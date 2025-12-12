@@ -39,8 +39,8 @@ export default function About() {
   ];
 
   const timeline = [
-    { year: "2024", title: "The Idea", desc: "Founded by a team of engineers and data scientists who saw the need for accessible environmental data in construction." },
-    { year: "2025", title: "Development", desc: "Building our proprietary material recognition AI, training on construction images and EPD data." },
+    { year: "2025", title: "The Idea", desc: "Founded by a team of IT professionals who saw the need for accessible environmental data in construction." },
+    { year: "2025", title: "Development", desc: "Building our proprietary material recognition AI, training on construction images, ICE and EPD data." },
     { year: "Q1 2026", title: "Launch", desc: "Planned public launch of Carbioo AI platform with material analysis and alternative recommendation features." },
     { year: "2026+", title: "Growth", desc: "Expanding our database and partnerships to cover materials and standards worldwide." },
   ];
@@ -106,7 +106,7 @@ export default function About() {
                 </span>
                 <h2 className="text-3xl font-display font-bold">Building for a Sustainable Future</h2>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  Carbioo AI was founded in 2024 by a team of engineers and data scientists who were frustrated by the lack of transparent environmental data in the construction industry.
+                  Carbioo AI was founded in 2025 by a team of IT professionals who were frustrated by the lack of slow and transparent environmental data in the construction industry.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   We realized that while sustainable alternatives existed, they were often hard to find or difficult to compare against standard materials. We set out to change that by building a comprehensive material intelligence platform, powered by cutting-edge AI.
