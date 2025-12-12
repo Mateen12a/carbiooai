@@ -3,7 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Dialog,
   DialogContent,
+  DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { Button } from "@/components/ui/button";
 import { 
   Leaf, 
@@ -74,6 +77,10 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden border-0 bg-transparent shadow-2xl">
+        <VisuallyHidden.Root>
+          <DialogTitle>Welcome to Carbioo AI</DialogTitle>
+          <DialogDescription>Join the waitlist for the future of sustainable construction</DialogDescription>
+        </VisuallyHidden.Root>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

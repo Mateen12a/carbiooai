@@ -85,10 +85,14 @@ Key collections:
 
 ## Recent Changes
 
+### December 2024 - Waitlist-Focused Mode
+- **Simplified Landing Page**: Removed demo scanner and inflated statistics, focused on waitlist signup for pre-launch phase
+- **Calmer Messaging**: Updated copy to reflect pre-launch status without overstated claims
+- **Removed Auth Routes**: Sign in and register pages removed from navigation, focusing solely on waitlist
+- **About Page Update**: Removed stats section and "built by architects for architects" positioning, replaced with broader team messaging
+- **Accessibility Fix**: Added proper DialogTitle/DialogDescription for screen reader support in welcome popup
+
 ### December 2024 - Landing Page & Waitlist Enhancement
-- **Enhanced Landing Page**: Added comprehensive content about Carbioo AI being "the first AI for sustainable construction", improved hero section, added problem/solution sections, impact statistics, and testimonials
-- **Overhauled About Page**: Clear messaging about mission to decarbonize construction, timeline, team section, and "first of its kind" positioning
-- **Enhanced Features Page**: Added core capabilities, comparison with traditional methods, how it works section
 - **Waitlist Modal**: Multi-step form with name, email validation, construction professional question with profession dropdown, interest reason field
 - **Welcome Popup**: Beautiful onboarding popup for new visitors with slides explaining Carbioo AI's value proposition
 - **Email Verification Flow**: Backend email verification using Resend, 24-hour token expiry, rate limiting, spam prevention

@@ -357,8 +357,6 @@ export default function Landing() {
           </div>
         </div>
       </footer>
-
-      <WaitlistModal open={showWaitlistModal} onOpenChange={setShowWaitlistModal} />
     </div>
   );
 }
