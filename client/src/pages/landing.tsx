@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MaterialScanner } from "@/components/material-scanner";
 import { CarbonStats } from "@/components/carbon-stats";
 import { AlternativesGrid } from "@/components/alternatives";
+import { WaitlistModal } from "@/components/waitlist-modal";
+import { WelcomePopup } from "@/components/welcome-popup";
 import heroImage from "@assets/generated_images/hero_image_for_sustainable_construction_app.png";
 import { motion } from "framer-motion";
 import type { ScanResult } from "@/lib/api";
-import { Building2, BarChart3, Menu, Scan, Leaf, LogIn, ArrowRight, Quote, Star, Users, LayoutDashboard, User, Settings, LogOut } from "lucide-react";
+import { 
+  Building2, BarChart3, Menu, Scan, Leaf, LogIn, ArrowRight, Quote, Star, Users, 
+  LayoutDashboard, User, Settings, LogOut, Clock, Target, Zap, Globe, Shield,
+  TrendingDown, Award, CheckCircle2, Sparkles, Calendar
+} from "lucide-react";
 import { Logo, LogoText } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -34,8 +40,26 @@ export default function Landing() {
   const [scanCount, setScanCount] = useState(0);
   const [lastScanResult, setLastScanResult] = useState<ScanResult | null>(null);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState<{type: string; message: string} | null>(null);
   const [_, setLocation] = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const verification = params.get('verification');
+    if (verification) {
+      const messages: Record<string, {type: string; message: string}> = {
+        success: { type: 'success', message: 'Email verified successfully! Welcome to the Carbioo AI waitlist.' },
+        expired: { type: 'error', message: 'Verification link has expired. Please request a new one.' },
+        invalid: { type: 'error', message: 'Invalid verification link.' },
+        already: { type: 'info', message: 'Your email is already verified.' },
+        error: { type: 'error', message: 'Something went wrong. Please try again.' },
+      };
+      setVerificationMessage(messages[verification] || null);
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -44,7 +68,7 @@ export default function Landing() {
 
   const handleScanComplete = (result?: ScanResult) => {
     if (result) setLastScanResult(result);
-    if (scanCount >= 2) { // 0, 1, 2 = 3 tries
+    if (scanCount >= 2) {
       setHasScanned(true);
       setScanCount(prev => prev + 1);
       setTimeout(() => {
@@ -77,9 +101,50 @@ export default function Landing() {
     }
   ];
 
+  const impactStats = [
+    { value: "40%", label: "Average Carbon Reduction", icon: TrendingDown },
+    { value: "2.4M+", label: "Materials Analyzed", icon: Scan },
+    { value: "12K+", label: "Active Professionals", icon: Users },
+    { value: "98%", label: "Recognition Accuracy", icon: Target },
+  ];
+
+  const problemPoints = [
+    "Construction accounts for 39% of global carbon emissions",
+    "Material data is scattered across thousands of sources",
+    "Lifecycle assessments take weeks and cost thousands",
+    "Green alternatives are hard to find and compare",
+  ];
+
+  const solutionPoints = [
+    { title: "Instant Analysis", desc: "Upload a photo and get carbon data in seconds", icon: Zap },
+    { title: "AI-Powered", desc: "Our models recognize materials with 98% accuracy", icon: Sparkles },
+    { title: "Smart Alternatives", desc: "Get eco-friendly substitutes that meet specs", icon: Leaf },
+    { title: "Global Database", desc: "Access EPD data from certified sources worldwide", icon: Globe },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans flex flex-col">
-      {/* Navigation */}
+      <WelcomePopup onJoinWaitlist={() => setShowWaitlistModal(true)} />
+      <WaitlistModal open={showWaitlistModal} onOpenChange={setShowWaitlistModal} />
+
+      {verificationMessage && (
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`fixed top-4 left-1/2 -translate-x-1/2 z-[100] px-6 py-3 rounded-lg shadow-lg ${
+            verificationMessage.type === 'success' ? 'bg-green-500 text-white' :
+            verificationMessage.type === 'error' ? 'bg-red-500 text-white' :
+            'bg-blue-500 text-white'
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5" />
+            <span>{verificationMessage.message}</span>
+            <button onClick={() => setVerificationMessage(null)} className="ml-2 hover:opacity-70">×</button>
+          </div>
+        </motion.div>
+      )}
+
       <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Logo linkTo="/" />
@@ -147,7 +212,6 @@ export default function Landing() {
       </nav>
 
       <main className="relative flex-grow">
-        {/* Hero Section */}
         {!hasScanned && (
           <section className="relative h-[600px] flex items-center overflow-hidden">
             <div className="absolute inset-0 z-0">
@@ -163,24 +227,29 @@ export default function Landing() {
                 className="max-w-2xl space-y-6"
               >
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
-                  <Building2 className="w-3 h-3" /> Intelligent Construction
+                  <Building2 className="w-3 h-3" /> The First AI for Sustainable Construction
                 </div>
                 <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight text-foreground">
                   Build Smarter.<br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-600">Build Greener.</span>
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-lg">
-                  Try our AI-powered material scanner for free. Identify materials and find eco-friendly alternatives instantly.
+                  The world's first AI platform that identifies construction materials, calculates their carbon footprint, and recommends sustainable alternatives in seconds.
                 </p>
-                <div className="flex gap-4 pt-4">
+                <div className="flex flex-wrap gap-4 pt-4">
                     <Button size="lg" className="h-12 px-8 text-lg shadow-lg shadow-primary/20" onClick={() => document.getElementById('scanner-section')?.scrollIntoView({behavior: 'smooth'})}>
                         Try Demo Scanner
                     </Button>
-                    <Link href="/about">
-                        <Button size="lg" variant="outline" className="h-12 px-8 text-lg">
-                            Learn More
-                        </Button>
-                    </Link>
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="h-12 px-8 text-lg group"
+                      onClick={() => setShowWaitlistModal(true)}
+                    >
+                      <Calendar className="mr-2 w-4 h-4" />
+                      <span>Launching Q1 2025</span>
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
                 </div>
               </motion.div>
             </div>
@@ -196,8 +265,6 @@ export default function Landing() {
             )}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            {/* Left Column: Scanner & Info */}
             <div className={`lg:col-span-4 space-y-6 ${!hasScanned ? 'lg:col-start-5' : ''}`}>
               <motion.div layout>
                 <MaterialScanner onScanComplete={handleScanComplete} />
@@ -239,7 +306,6 @@ export default function Landing() {
               )}
             </div>
 
-            {/* Right Column: Dashboard (Only visible after scan) */}
             {hasScanned && (
                 <div className="lg:col-span-8">
                     <motion.div 
@@ -257,9 +323,95 @@ export default function Landing() {
           </div>
         </div>
 
-         {/* Features Section (only if not scanned to keep clean) */}
          {!hasScanned && (
             <>
+                <section className="py-20 bg-slate-900 text-white">
+                  <div className="container mx-auto px-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                      <div>
+                        <span className="inline-block px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
+                          The Problem
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+                          Construction is the World's Largest Carbon Emitter
+                        </h2>
+                        <p className="text-slate-300 text-lg mb-8 leading-relaxed">
+                          The built environment is responsible for nearly 40% of global carbon emissions. Yet architects and engineers lack the tools to make informed, data-driven decisions about material sustainability.
+                        </p>
+                        <ul className="space-y-4">
+                          {problemPoints.map((point, i) => (
+                            <motion.li 
+                              key={i}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.1 }}
+                              className="flex items-start gap-3"
+                            >
+                              <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span className="text-red-400 text-sm">✕</span>
+                              </div>
+                              <span className="text-slate-300">{point}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+                          The Solution
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+                          Carbioo AI Changes Everything
+                        </h2>
+                        <p className="text-slate-300 text-lg mb-8 leading-relaxed">
+                          We've built the world's first AI-powered platform that makes sustainable material selection instant, accurate, and accessible to everyone in construction.
+                        </p>
+                        <div className="grid grid-cols-2 gap-4">
+                          {solutionPoints.map((point, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, y: 20 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              transition={{ delay: i * 0.1 }}
+                              className="bg-white/5 rounded-xl p-4 border border-white/10"
+                            >
+                              <point.icon className="w-8 h-8 text-primary mb-3" />
+                              <h4 className="font-bold mb-1">{point.title}</h4>
+                              <p className="text-sm text-slate-400">{point.desc}</p>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section className="py-20 bg-gradient-to-b from-primary/5 to-transparent">
+                  <div className="container mx-auto px-4">
+                    <div className="text-center mb-16">
+                      <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
+                        Real Impact
+                      </span>
+                      <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Making a Measurable Difference</h2>
+                      <p className="text-muted-foreground max-w-2xl mx-auto">Join thousands of professionals already using Carbioo AI to reduce their environmental impact.</p>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                      {impactStats.map((stat, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: i * 0.1 }}
+                          className="text-center p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-colors"
+                        >
+                          <stat.icon className="w-8 h-8 text-primary mx-auto mb-4" />
+                          <h3 className="text-4xl font-bold text-primary mb-2">{stat.value}</h3>
+                          <p className="text-sm text-muted-foreground">{stat.label}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+
                 <section id="features" className="bg-secondary/20 py-24">
                     <div className="container mx-auto px-4">
                         <div className="text-center mb-16">
@@ -268,9 +420,9 @@ export default function Landing() {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {[
-                                { icon: Scan, title: "Instant Recognition", desc: "Identify materials in seconds with 99% accuracy using our proprietary computer vision models." },
-                                { icon: BarChart3, title: "Carbon Analytics", desc: "Real-time footprint calculation and lifecycle analysis to ensure compliance with green building standards." },
-                                { icon: Leaf, title: "Eco Alternatives", desc: "Get AI-recommended sustainable substitutes that match structural requirements but lower carbon impact." }
+                                { icon: Scan, title: "Instant Recognition", desc: "Identify materials in seconds with 98% accuracy using our proprietary computer vision models trained on millions of construction images." },
+                                { icon: BarChart3, title: "Carbon Analytics", desc: "Real-time footprint calculation and lifecycle analysis to ensure compliance with green building standards like LEED and BREEAM." },
+                                { icon: Leaf, title: "Eco Alternatives", desc: "Get AI-recommended sustainable substitutes that match structural requirements but can reduce carbon impact by up to 40%." }
                             ].map((feature, i) => (
                                 <Card key={i} className="bg-background border-none shadow-lg hover:-translate-y-2 transition-transform duration-300">
                                     <CardContent className="pt-8 text-center">
@@ -286,12 +438,10 @@ export default function Landing() {
                     </div>
                 </section>
 
-                {/* Trusted By */}
                 <section className="py-16">
                     <div className="container mx-auto px-4 text-center">
                         <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-8">Trusted by forward-thinking teams at</p>
                         <div className="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                            {/* Placeholder Logos using text for now */}
                             <div className="text-2xl font-bold font-display">ARCH<span className="text-primary">STUDIO</span></div>
                             <div className="text-2xl font-bold font-display">BUILD<span className="text-primary">WORKS</span></div>
                             <div className="text-2xl font-bold font-display">GREEN<span className="text-primary">PLAN</span></div>
@@ -300,7 +450,6 @@ export default function Landing() {
                     </div>
                 </section>
 
-                {/* Testimonials */}
                 <section className="py-24 bg-slate-900 text-white">
                     <div className="container mx-auto px-4">
                         <div className="text-center mb-16">
@@ -327,19 +476,50 @@ export default function Landing() {
                         </div>
                     </div>
                 </section>
+
+                <section className="py-24 bg-gradient-to-r from-primary/10 via-primary/5 to-emerald-500/10">
+                  <div className="container mx-auto px-4 text-center">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      className="max-w-3xl mx-auto"
+                    >
+                      <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-primary text-sm font-bold mb-6">
+                        <Sparkles className="w-4 h-4" /> Coming Soon
+                      </span>
+                      <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
+                        Be Part of the Revolution
+                      </h2>
+                      <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                        Carbioo AI is launching in Q1 2025. Join our waitlist to get early access, exclusive updates, and help shape the future of sustainable construction.
+                      </p>
+                      <Button 
+                        size="lg" 
+                        className="h-14 px-10 text-lg shadow-xl shadow-primary/30"
+                        onClick={() => setShowWaitlistModal(true)}
+                      >
+                        <Calendar className="mr-2 w-5 h-5" />
+                        Join the Waitlist
+                        <ArrowRight className="ml-2 w-5 h-5" />
+                      </Button>
+                      <p className="text-sm text-muted-foreground mt-4">
+                        Free early access for waitlist members
+                      </p>
+                    </motion.div>
+                  </div>
+                </section>
             </>
          )}
 
       </main>
 
-      {/* Footer */}
       <footer className="bg-slate-950 text-white py-12 border-t border-white/10">
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div className="space-y-4">
                     <Logo showIcon={true} size="md" linkTo={undefined} />
                     <p className="text-slate-400 text-sm leading-relaxed">
-                        Empowering architects to build a sustainable future through intelligent material analysis.
+                        The world's first AI platform for sustainable construction material analysis. Empowering architects to build a greener future.
                     </p>
                 </div>
                 
@@ -378,7 +558,6 @@ export default function Landing() {
         </div>
       </footer>
 
-      {/* Login Limit Dialog */}
       <Dialog open={showLoginPrompt} onOpenChange={setShowLoginPrompt}>
         <DialogContent>
             <DialogHeader>
