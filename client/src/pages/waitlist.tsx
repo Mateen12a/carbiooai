@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import heroImage from "@assets/generated_images/hero_image_for_sustainable_construction_app.png";
 
+const API_BASE = import.meta.env.VITE_API_URL || "/api";
+
 export default function Waitlist() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,7 +32,7 @@ export default function Waitlist() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch("/api/waitlist", {
+      const response = await fetch(`${API_BASE}/waitlist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email })

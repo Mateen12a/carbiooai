@@ -1,36 +1,71 @@
 # Carbioo AI - Sustainable Construction Platform
 
 ## Overview
-Carbioo AI is a waitlist landing page for an AI-powered sustainable construction platform. The app helps architects and construction professionals identify materials, calculate carbon footprints, and discover eco-friendly alternatives.
+Carbioo AI is an AI-powered platform for sustainable construction that helps identify construction materials, calculate carbon footprints, and recommend eco-friendly alternatives. Currently running as a waitlist/landing page.
 
 ## Project Structure
-- `/client` - React frontend with Vite and Tailwind CSS
-- `/server` - Express.js backend API
-- `/shared` - Shared types and utilities
-- `/attached_assets` - Generated images and assets
+```
+├── client/           # React frontend (Vite + Tailwind)
+│   ├── src/
+│   │   ├── components/   # UI components
+│   │   ├── pages/        # Page components
+│   │   ├── lib/          # Utilities and API client
+│   │   └── hooks/        # Custom React hooks
+│   └── vercel.json       # Vercel deployment config
+├── server/           # Express backend
+│   ├── db/           # MongoDB models and connection
+│   ├── routes/       # API routes
+│   ├── services/     # Email and inference services
+│   └── index.ts      # Server entry point
+├── shared/           # Shared types/schemas
+└── attached_assets/  # Static assets
+```
 
 ## Tech Stack
-- **Frontend**: React 18, Vite, Tailwind CSS 4, Wouter (routing)
+- **Frontend**: React 18, Vite, Tailwind CSS, Framer Motion
 - **Backend**: Express.js, TypeScript
-- **Database**: MongoDB Atlas (via Mongoose)
-- **Email**: Resend for verification emails
+- **Database**: MongoDB Atlas
+- **Email**: Resend (for verification emails)
 
-## Running the App
-The app runs on port 5000 serving both frontend and API:
+## Environment Variables
+
+### Backend (Render)
+- `MONGODB_URI` - MongoDB Atlas connection string
+- `ALLOWED_ORIGINS` - Comma-separated list of allowed CORS origins (e.g., `https://carbiooai.com,https://www.carbiooai.com`)
+- `RESEND_API_KEY` - (Optional) For email verification
+
+### Frontend (Vercel)
+- `VITE_API_URL` - Backend API URL (e.g., `https://carbioo-api.onrender.com/api`)
+
+## Development
 ```bash
+npm install
 npm run dev
 ```
 
-## Environment Variables
-- `MONGODB_URI` - MongoDB connection string (currently uses default Atlas connection)
-- `RESEND_API_KEY` - For sending verification emails (optional for basic waitlist)
+## Build
+```bash
+npm run build
+npm run start
+```
 
-## Key Features
-- Waitlist signup with email verification
-- Rate limiting for spam protection
-- Landing page with feature showcase
+## Deployment (Split Setup)
 
-## Deployment
-Configured for Replit autoscale deployment:
-- Build: `npm run build`
-- Start: `npm run start`
+### Frontend → Vercel (Always On)
+1. Connect GitHub repo to Vercel
+2. Set root directory to `client`
+3. Build command: `npm run build`
+4. Output directory: `dist`
+5. Add environment variable: `VITE_API_URL`
+
+### Backend → Render (Free Tier)
+1. Connect GitHub repo to Render
+2. Build command: `npm install && npm run build`
+3. Start command: `npm run start`
+4. Add environment variables: `MONGODB_URI`, `ALLOWED_ORIGINS`
+
+## Recent Changes
+- 2024-12-12: Prepared for split frontend/backend deployment
+- Added CORS support for cross-origin API requests
+- Updated API calls to use configurable base URL
+- Removed hardcoded MongoDB credentials (now uses env vars)

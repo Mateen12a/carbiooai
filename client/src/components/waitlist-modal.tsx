@@ -22,6 +22,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Loader2, CheckCircle2, Mail, Sparkles, Building2, User, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/logo";
 
+const API_BASE = import.meta.env.VITE_API_URL || "/api";
+
 interface WaitlistModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -103,7 +105,7 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
     } else if (step === 2 && validateStep2()) {
       setIsLoading(true);
       try {
-        const response = await fetch("/api/waitlist/check-email", {
+        const response = await fetch(`${API_BASE}/waitlist/check-email`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: formData.email }),
@@ -137,7 +139,7 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
     setError("");
     
     try {
-      const response = await fetch("/api/waitlist", {
+      const response = await fetch(`${API_BASE}/waitlist`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
