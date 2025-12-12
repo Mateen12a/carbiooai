@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Dialog,
@@ -30,6 +30,34 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const slides = [
+    {
+      icon: Leaf,
+      title: "The Future of Sustainable Construction",
+      description: "Welcome to Carbioo AI, the world's first AI-powered platform designed to revolutionize how we choose construction materials.",
+      highlight: "Industry First",
+      color: "from-emerald-500 to-green-600",
+    },
+    {
+      icon: Scan,
+      title: "AI-Powered Material Recognition",
+      description: "Upload a photo of any construction material, and our AI instantly identifies it and calculates its carbon footprint.",
+      highlight: "Instant Analysis",
+      color: "from-blue-500 to-cyan-600",
+    },
+    {
+      icon: BarChart3,
+      title: "Smarter, Greener Alternatives",
+      description: "Get intelligent recommendations for eco-friendly materials that meet your structural requirements.",
+      highlight: "Data-Driven",
+      color: "from-violet-500 to-purple-600",
+    },
+  ];
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  }, [slides.length]);
+
   useEffect(() => {
     const hasSeenWelcome = localStorage.getItem(WELCOME_SHOWN_KEY);
     if (!hasSeenWelcome) {
@@ -39,6 +67,12 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const interval = setInterval(nextSlide, 4000);
+    return () => clearInterval(interval);
+  }, [isOpen, nextSlide]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -50,33 +84,9 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
     onJoinWaitlist();
   };
 
-  const slides = [
-    {
-      icon: Leaf,
-      title: "The Future of Sustainable Construction",
-      description: "Welcome to Carbioo AI, the world's first AI-powered platform designed to revolutionize how we choose construction materials. We're making sustainable building accessible to everyone.",
-      highlight: "Industry First",
-      color: "from-emerald-500 to-green-600",
-    },
-    {
-      icon: Scan,
-      title: "AI-Powered Material Recognition",
-      description: "Simply upload a photo of any construction material, and our advanced AI instantly identifies it, calculates its carbon footprint, and provides detailed environmental data.",
-      highlight: "Instant Analysis",
-      color: "from-blue-500 to-cyan-600",
-    },
-    {
-      icon: BarChart3,
-      title: "Smarter, Greener Alternatives",
-      description: "Get intelligent recommendations for eco-friendly materials that meet your structural requirements while significantly reducing your project's carbon impact.",
-      highlight: "Data-Driven Decisions",
-      color: "from-violet-500 to-purple-600",
-    },
-  ];
-
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden border-0 bg-transparent shadow-2xl">
+      <DialogContent className="max-w-[95vw] sm:max-w-[500px] max-h-[90vh] p-0 overflow-hidden border-0 bg-transparent shadow-2xl">
         <VisuallyHidden.Root>
           <DialogTitle>Welcome to Carbioo AI</DialogTitle>
           <DialogDescription>Join the waitlist for the future of sustainable construction</DialogDescription>
@@ -98,15 +108,15 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
             <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-emerald-500/10 to-transparent rounded-full blur-3xl" />
           </div>
 
-          <div className="relative z-10">
-            <div className="p-8 text-center">
+          <div className="relative z-10 overflow-y-auto max-h-[85vh]">
+            <div className="p-4 sm:p-6 text-center">
               <motion.div
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium mb-6"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs sm:text-sm font-medium mb-4"
               >
-                <Sparkles className="w-4 h-4" />
+                <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
                 Welcome to the Future
               </motion.div>
               
@@ -114,18 +124,18 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="flex items-center justify-center gap-3 mb-8"
+                className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-primary to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-primary/30">
-                  <Building2 className="w-7 h-7 text-white" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg shadow-primary/30">
+                  <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <span className="text-3xl font-bold text-white tracking-tight">
+                <span className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                   Carbioo<span className="text-primary">AI</span>
                 </span>
               </motion.div>
             </div>
 
-            <div className="px-8 pb-4">
+            <div className="px-4 sm:px-6 pb-2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
@@ -135,46 +145,46 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
                   transition={{ duration: 0.3 }}
                   className="text-center"
                 >
-                  <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${slides[currentSlide].color} p-0.5`}>
-                    <div className="w-full h-full rounded-2xl bg-slate-900 flex items-center justify-center">
+                  <div className={`w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br ${slides[currentSlide].color} p-0.5`}>
+                    <div className="w-full h-full rounded-xl sm:rounded-2xl bg-slate-900 flex items-center justify-center">
                       {(() => {
                         const Icon = slides[currentSlide].icon;
-                        return <Icon className="w-10 h-10 text-white" />;
+                        return <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />;
                       })()}
                     </div>
                   </div>
                   
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 bg-gradient-to-r ${slides[currentSlide].color} text-white`}>
+                  <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3 bg-gradient-to-r ${slides[currentSlide].color} text-white`}>
                     {slides[currentSlide].highlight}
                   </span>
                   
-                  <h2 className="text-2xl font-bold text-white mb-4">
+                  <h2 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 leading-tight">
                     {slides[currentSlide].title}
                   </h2>
                   
-                  <p className="text-slate-400 leading-relaxed max-w-md mx-auto">
+                  <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
                     {slides[currentSlide].description}
                   </p>
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            <div className="flex justify-center gap-2 py-4">
+            <div className="flex justify-center gap-2 py-3">
               {slides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === currentSlide
-                      ? "bg-primary w-6"
+                      ? "bg-primary w-5"
                       : "bg-white/20 hover:bg-white/40"
                   }`}
                 />
               ))}
             </div>
 
-            <div className="p-8 pt-4">
-              <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="p-4 sm:p-6 pt-2">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4">
                 {[
                   { icon: Globe, label: "Global Database" },
                   { icon: Zap, label: "Instant Results" },
@@ -185,10 +195,10 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 + i * 0.1 }}
-                    className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/5"
+                    className="flex flex-col items-center gap-1.5 p-2 sm:p-3 rounded-lg sm:rounded-xl bg-white/5"
                   >
-                    <feature.icon className="w-5 h-5 text-primary" />
-                    <span className="text-xs text-slate-400">{feature.label}</span>
+                    <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                    <span className="text-[10px] sm:text-xs text-slate-400 text-center leading-tight">{feature.label}</span>
                   </motion.div>
                 ))}
               </div>
@@ -197,26 +207,26 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
-                className="flex flex-col gap-3"
+                className="flex flex-col gap-2"
               >
                 <Button
                   onClick={handleJoinWaitlist}
                   size="lg"
-                  className="w-full h-12 text-lg bg-gradient-to-r from-primary to-emerald-600 hover:from-primary/90 hover:to-emerald-600/90 shadow-lg shadow-primary/30"
+                  className="w-full h-10 sm:h-11 text-base sm:text-lg bg-gradient-to-r from-primary to-emerald-600 hover:from-primary/90 hover:to-emerald-600/90 shadow-lg shadow-primary/30"
                 >
-                  Join the Waitlist <ArrowRight className="w-5 h-5 ml-2" />
+                  Join the Waitlist <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Button>
                 <Button
                   variant="ghost"
                   onClick={handleClose}
-                  className="text-slate-400 hover:text-white"
+                  className="text-slate-400 hover:text-white text-sm"
                 >
                   Maybe Later
                 </Button>
               </motion.div>
               
-              <p className="text-center text-xs text-slate-500 mt-4">
-                Be among the first to experience the future of sustainable construction
+              <p className="text-center text-[10px] sm:text-xs text-slate-500 mt-3">
+                Be among the first to experience sustainable construction
               </p>
             </div>
           </div>

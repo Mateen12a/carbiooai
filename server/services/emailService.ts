@@ -12,7 +12,7 @@ export async function sendVerificationEmail(email: string, firstName: string, ve
       return false;
     }
     
-    const verificationUrl = `${process.env.APP_URL || 'https://carbiooai.com'}/api/waitlist/verify?token=${verificationToken}`;
+    const verificationUrl = `${process.env.FRONTEND_URL || 'https://carbiooai.com'}/verify?token=${verificationToken}`;
     
     const { error } = await resend.emails.send({
       from: FROM_EMAIL,

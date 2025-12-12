@@ -218,6 +218,46 @@ router.get('/verify', async (req, res) => {
   }
 });
 
+router.post('/verify-token', async (req, res) => {
+  try {
+    const { token } = req.body;
+    
+    if (!token || typeof token !== 'string') {
+      return res.status(400).json({ status: 'invalid', message: 'Invalid verification token' });
+    }
+    
+    const entry = await Waitlist.findOne({ 
+      verificationToken: token,
+      verificationTokenExpiry: { $gt: new Date() }
+    });
+    
+    if (!entry) {
+      const expiredEntry = await Waitlist.findOne({ verificationToken: token });
+      if (expiredEntry) {
+        return res.status(400).json({ status: 'expired', message: 'Verification link has expired' });
+      }
+      return res.status(400).json({ status: 'invalid', message: 'Invalid verification token' });
+    }
+    
+    if (entry.isVerified) {
+      return res.json({ status: 'already', message: 'Email is already verified' });
+    }
+    
+    entry.isVerified = true;
+    entry.verifiedAt = new Date();
+    entry.verificationToken = undefined;
+    entry.verificationTokenExpiry = undefined;
+    await entry.save();
+    
+    await sendWelcomeEmail(entry.email, entry.firstName);
+    
+    return res.json({ status: 'success', message: 'Email verified successfully' });
+  } catch (error) {
+    console.error('Verification error:', error);
+    return res.status(500).json({ status: 'error', message: 'Something went wrong' });
+  }
+});
+
 router.post('/resend-verification', async (req, res) => {
   try {
     const clientIp = req.ip || req.socket.remoteAddress || 'unknown';

@@ -15,6 +15,7 @@ import ApiDocs from "@/pages/api-docs";
 import Privacy from "@/pages/legal/privacy";
 import Terms from "@/pages/legal/terms";
 import Cookies from "@/pages/legal/cookies";
+import Verify from "@/pages/verify";
 import NotFound from "@/pages/not-found";
 
 const API_BASE = import.meta.env.VITE_API_URL || "/api";
@@ -46,6 +47,7 @@ function Router() {
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/cookies" component={Cookies} />
+      <Route path="/verify" component={Verify} />
       <Route component={NotFound} />
     </Switch>
   );

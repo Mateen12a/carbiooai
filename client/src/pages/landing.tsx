@@ -136,27 +136,27 @@ export default function Landing() {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
                 <Building2 className="w-3 h-3" /> Coming Soon
               </div>
-              <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight text-foreground">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-bold leading-tight text-foreground">
                 Build Smarter.<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-600">Build Greener.</span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-lg">
+              <p className="text-base sm:text-lg text-muted-foreground max-w-lg">
                 We're building the first AI platform that identifies construction materials, calculates their carbon footprint, and recommends sustainable alternatives in seconds.
               </p>
-              <div className="flex flex-wrap gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4">
                 <Button 
                   size="lg" 
-                  className="h-12 px-8 text-lg shadow-lg shadow-primary/20"
+                  className="h-11 sm:h-12 px-6 sm:px-8 text-base sm:text-lg shadow-lg shadow-primary/20 w-full sm:w-auto"
                   onClick={() => setShowWaitlistModal(true)}
                 >
                   <Calendar className="mr-2 w-4 h-4" />
                   Join the Waitlist
                 </Button>
-                <Link href="/features">
+                <Link href="/features" className="w-full sm:w-auto">
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="h-12 px-8 text-lg group"
+                    className="h-11 sm:h-12 px-6 sm:px-8 text-base sm:text-lg group w-full"
                   >
                     <span>Learn More</span>
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -170,14 +170,14 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="py-20 bg-slate-900 text-white">
+        <section className="py-12 sm:py-20 bg-slate-900 text-white">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center">
               <div>
                 <span className="inline-block px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
                   The Challenge
                 </span>
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-4 sm:mb-6">
                   Construction is the World's Largest Carbon Emitter
                 </h2>
                 <p className="text-slate-300 text-lg mb-8 leading-relaxed">
@@ -204,13 +204,13 @@ export default function Landing() {
                 <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-4">
                   Our Vision
                 </span>
-                <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-4 sm:mb-6">
                   Carbioo AI is the Answer
                 </h2>
-                <p className="text-slate-300 text-lg mb-8 leading-relaxed">
+                <p className="text-slate-300 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
                   We're creating the first AI-powered platform that makes sustainable material selection instant, accurate, and accessible to everyone in construction.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   {solutionPoints.map((point, i) => (
                     <motion.div
                       key={i}
