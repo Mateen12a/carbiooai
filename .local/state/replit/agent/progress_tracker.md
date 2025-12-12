@@ -9,7 +9,8 @@
 - [x] Fixed mobile menu - now opens Sheet drawer with About/Features links  
 - [x] Made welcome popup swipable with left/right arrows and increased carousel to 6 seconds
 - [x] Fixed email template icons - replaced SVG icons with hosted PNG images for email client compatibility
-  - Verification email: Added leaf icon for Carbioo AI brand
-  - Welcome email: Added leaf icon for brand, checkmark for "You're In" section
+  - Verification email: Using official sprout.png icon from carbiooai.com
+  - Welcome email: Using sprout.png for brand, checkmark for "You're In" section
   - Welcome email features: Added time, layers, and globe icons for feature highlights
   - Used table-based layout for better email client compatibility
+  - Removed icon background, matched font styling to landing page (Carbioo white, AI green)

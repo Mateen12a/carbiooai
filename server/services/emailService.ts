@@ -30,11 +30,11 @@ export async function sendVerificationEmail(email: string, firstName: string, ve
     <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 16px 16px 0 0; padding: 40px; text-align: center;">
       <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 20px auto;">
         <tr>
-          <td style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; text-align: center; vertical-align: middle;">
-            <img src="https://img.icons8.com/fluency/48/leaf.png" alt="Carbioo" width="28" height="28" style="display: block; margin: auto;" />
+          <td style="vertical-align: middle;">
+            <img src="https://www.carbiooai.com/sprout.png" alt="Carbioo" width="36" height="36" style="display: block;" />
           </td>
-          <td style="padding-left: 12px;">
-            <span style="font-size: 28px; font-weight: 700; color: white; letter-spacing: -0.5px;">Carbioo AI</span>
+          <td style="padding-left: 10px; vertical-align: middle;">
+            <span style="font-size: 28px; font-weight: 700; color: white; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Carbioo </span><span style="font-size: 28px; font-weight: 700; color: #22c55e; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">AI</span>
           </td>
         </tr>
       </table>
@@ -114,18 +114,18 @@ export async function sendWelcomeEmail(email: string, firstName: string): Promis
     <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 16px 16px 0 0; padding: 48px 40px; text-align: center;">
       <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 24px auto;">
         <tr>
-          <td style="width: 56px; height: 56px; background: rgba(255,255,255,0.2); border-radius: 14px; text-align: center; vertical-align: middle;">
-            <img src="https://img.icons8.com/fluency/48/leaf.png" alt="Carbioo" width="32" height="32" style="display: block; margin: auto;" />
+          <td style="vertical-align: middle;">
+            <img src="https://www.carbiooai.com/sprout.png" alt="Carbioo" width="40" height="40" style="display: block;" />
           </td>
-          <td style="padding-left: 12px;">
-            <span style="font-size: 32px; font-weight: 700; color: white; letter-spacing: -0.5px;">Carbioo AI</span>
+          <td style="padding-left: 10px; vertical-align: middle;">
+            <span style="font-size: 32px; font-weight: 700; color: white; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Carbioo </span><span style="font-size: 32px; font-weight: 700; color: #22c55e; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">AI</span>
           </td>
         </tr>
       </table>
       <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 20px auto;">
         <tr>
-          <td style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; text-align: center; vertical-align: middle;">
-            <img src="https://img.icons8.com/fluency/48/checkmark.png" alt="Success" width="40" height="40" style="display: block; margin: auto;" />
+          <td style="width: 80px; height: 80px; background: rgba(255,255,255,0.25); border-radius: 50%; text-align: center; vertical-align: middle;">
+            <img src="https://img.icons8.com/fluency/96/checkmark.png" alt="Success" width="48" height="48" style="display: block; margin: auto;" />
           </td>
         </tr>
       </table>
