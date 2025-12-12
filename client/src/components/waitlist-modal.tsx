@@ -97,6 +97,10 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
       setError("Please specify your profession");
       return false;
     }
+    if (formData.isConstructionProfessional === "no" && formData.nonProfessionalRole === "other" && !formData.nonProfessionalOther.trim()) {
+      setError("Please specify what brings you here");
+      return false;
+    }
     return true;
   };
 
@@ -151,6 +155,7 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
           profession: formData.isConstructionProfessional === "yes" ? formData.profession : undefined,
           professionOther: formData.profession === "other" ? formData.professionOther : undefined,
           nonProfessionalRole: formData.isConstructionProfessional === "no" ? formData.nonProfessionalRole : undefined,
+          nonProfessionalOther: formData.nonProfessionalRole === "other" ? formData.nonProfessionalOther : undefined,
           interestReason: formData.interestReason,
         }),
       });
