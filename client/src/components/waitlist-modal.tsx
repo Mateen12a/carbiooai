@@ -54,6 +54,7 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
     profession: "",
     professionOther: "",
     nonProfessionalRole: "",
+    nonProfessionalOther: "",
     interestReason: "",
   });
 
@@ -181,6 +182,7 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
         profession: "",
         professionOther: "",
         nonProfessionalRole: "",
+        nonProfessionalOther: "",
         interestReason: "",
       });
     }, 300);
@@ -385,14 +387,14 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="space-y-2"
+                        className="space-y-3"
                       >
                         <Label htmlFor="nonProfessionalRole">What brings you here?</Label>
                         <Select
                           value={formData.nonProfessionalRole}
                           onValueChange={(value) => handleInputChange("nonProfessionalRole", value)}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger data-testid="select-non-professional-role">
                             <SelectValue placeholder="Select an option" />
                           </SelectTrigger>
                           <SelectContent>
@@ -401,9 +403,26 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
                             <SelectItem value="investor">Investor / Business</SelectItem>
                             <SelectItem value="sustainability">Sustainability Advocate</SelectItem>
                             <SelectItem value="curious">Just Curious</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
+                            <SelectItem value="other">Other (Please Specify)</SelectItem>
                           </SelectContent>
                         </Select>
+                        
+                        {formData.nonProfessionalRole === "other" && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="space-y-2"
+                          >
+                            <Label htmlFor="nonProfessionalOther">Please specify</Label>
+                            <Input
+                              id="nonProfessionalOther"
+                              placeholder="What brings you here?"
+                              value={formData.nonProfessionalOther || ""}
+                              onChange={(e) => handleInputChange("nonProfessionalOther", e.target.value)}
+                              data-testid="input-non-professional-other"
+                            />
+                          </motion.div>
+                        )}
                       </motion.div>
                     )}
                   </div>

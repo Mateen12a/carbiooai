@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +17,9 @@ import {
   Building2,
   Globe,
   Zap,
-  X
+  X,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 interface WelcomePopupProps {
@@ -58,6 +60,19 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   }, [slides.length]);
 
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  }, [slides.length]);
+
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const threshold = 50;
+    if (info.offset.x < -threshold) {
+      nextSlide();
+    } else if (info.offset.x > threshold) {
+      prevSlide();
+    }
+  };
+
   useEffect(() => {
     const hasSeenWelcome = localStorage.getItem(WELCOME_SHOWN_KEY);
     if (!hasSeenWelcome) {
@@ -70,7 +85,7 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
 
   useEffect(() => {
     if (!isOpen) return;
-    const interval = setInterval(nextSlide, 4000);
+    const interval = setInterval(nextSlide, 6000);
     return () => clearInterval(interval);
   }, [isOpen, nextSlide]);
 
@@ -135,52 +150,77 @@ export function WelcomePopup({ onJoinWaitlist }: WelcomePopupProps) {
               </motion.div>
             </div>
 
-            <div className="px-4 sm:px-6 pb-2">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-center"
-                >
-                  <div className={`w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br ${slides[currentSlide].color} p-0.5`}>
-                    <div className="w-full h-full rounded-xl sm:rounded-2xl bg-slate-900 flex items-center justify-center">
-                      {(() => {
-                        const Icon = slides[currentSlide].icon;
-                        return <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />;
-                      })()}
-                    </div>
+            <div className="px-4 sm:px-6 pb-2 relative">
+              <motion.div
+                key={currentSlide}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={handleDragEnd}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="text-center cursor-grab active:cursor-grabbing touch-pan-y"
+              >
+                <div className={`w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br ${slides[currentSlide].color} p-0.5`}>
+                  <div className="w-full h-full rounded-xl sm:rounded-2xl bg-slate-900 flex items-center justify-center">
+                    {(() => {
+                      const Icon = slides[currentSlide].icon;
+                      return <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />;
+                    })()}
                   </div>
-                  
-                  <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3 bg-gradient-to-r ${slides[currentSlide].color} text-white`}>
-                    {slides[currentSlide].highlight}
-                  </span>
-                  
-                  <h2 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 leading-tight">
-                    {slides[currentSlide].title}
-                  </h2>
-                  
-                  <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
-                    {slides[currentSlide].description}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
+                </div>
+                
+                <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3 bg-gradient-to-r ${slides[currentSlide].color} text-white`}>
+                  {slides[currentSlide].highlight}
+                </span>
+                
+                <h2 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 leading-tight">
+                  {slides[currentSlide].title}
+                </h2>
+                
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-sm mx-auto">
+                  {slides[currentSlide].description}
+                </p>
+              </motion.div>
+              
+              <p className="text-center text-[10px] text-slate-500 mt-2 sm:hidden">
+                Swipe to explore
+              </p>
             </div>
 
-            <div className="flex justify-center gap-2 py-3">
-              {slides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? "bg-primary w-5"
-                      : "bg-white/20 hover:bg-white/40"
-                  }`}
-                />
-              ))}
+            <div className="flex justify-center items-center gap-3 py-3">
+              <button
+                onClick={prevSlide}
+                className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                data-testid="button-carousel-prev"
+              >
+                <ChevronLeft className="w-4 h-4 text-white/70" />
+              </button>
+              
+              <div className="flex gap-2">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentSlide
+                        ? "bg-primary w-5"
+                        : "bg-white/20 hover:bg-white/40"
+                    }`}
+                    data-testid={`button-carousel-dot-${index}`}
+                  />
+                ))}
+              </div>
+              
+              <button
+                onClick={nextSlide}
+                className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                data-testid="button-carousel-next"
+              >
+                <ChevronRight className="w-4 h-4 text-white/70" />
+              </button>
             </div>
 
             <div className="p-4 sm:p-6 pt-2">

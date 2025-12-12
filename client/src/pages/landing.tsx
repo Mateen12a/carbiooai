@@ -5,17 +5,25 @@ import heroImage from "@assets/generated_images/hero_image_for_sustainable_const
 import { motion } from "framer-motion";
 import { 
   Building2, BarChart3, Menu, Leaf, ArrowRight, Quote, 
-  Zap, Globe, Shield, Sparkles, Calendar, CheckCircle2
+  Zap, Globe, Shield, Sparkles, Calendar, CheckCircle2, X, Info, Layers
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export default function Landing() {
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [verificationMessage, setVerificationMessage] = useState<{type: string; message: string} | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
@@ -109,12 +117,53 @@ export default function Landing() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Button onClick={() => setShowWaitlistModal(true)}>
+            <Button onClick={() => setShowWaitlistModal(true)} className="hidden sm:flex">
               Join Waitlist <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
-            <Button size="icon" variant="ghost" className="md:hidden">
-              <Menu className="w-5 h-5" />
-            </Button>
+            
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button size="icon" variant="ghost" className="md:hidden" data-testid="button-mobile-menu">
+                  <Menu className="w-5 h-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[280px]">
+                <SheetHeader className="text-left">
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-6">
+                  <Link 
+                    href="/about" 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 p-3 rounded-lg hover-elevate text-foreground"
+                    data-testid="link-mobile-about"
+                  >
+                    <Info className="w-5 h-5 text-primary" />
+                    <span className="font-medium">About</span>
+                  </Link>
+                  <Link 
+                    href="/features" 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 p-3 rounded-lg hover-elevate text-foreground"
+                    data-testid="link-mobile-features"
+                  >
+                    <Layers className="w-5 h-5 text-primary" />
+                    <span className="font-medium">Features</span>
+                  </Link>
+                  <div className="border-t my-2" />
+                  <Button 
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setShowWaitlistModal(true);
+                    }}
+                    className="w-full"
+                    data-testid="button-mobile-waitlist"
+                  >
+                    Join Waitlist <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </nav>
@@ -123,7 +172,8 @@ export default function Landing() {
         <section className="relative min-h-[600px] flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img src={heroImage} alt="Construction Site" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70 md:via-background/90 md:to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent md:hidden" />
           </div>
           
           <div className="container mx-auto px-4 relative z-10">
@@ -133,14 +183,14 @@ export default function Landing() {
               transition={{ duration: 0.8 }}
               className="max-w-2xl space-y-6"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-bold uppercase tracking-wider shadow-sm">
                 <Building2 className="w-3 h-3" /> Coming Soon
               </div>
-              <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-bold leading-tight text-foreground">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-bold leading-tight text-foreground drop-shadow-sm">
                 Build Smarter.<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-600">Build Greener.</span>
               </h1>
-              <p className="text-base sm:text-lg text-muted-foreground max-w-lg">
+              <p className="text-base sm:text-lg text-foreground/90 md:text-muted-foreground max-w-lg font-medium md:font-normal drop-shadow-sm">
                 We're building the first AI platform that identifies construction materials, calculates their carbon footprint, and recommends sustainable alternatives in seconds.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4">
@@ -148,6 +198,7 @@ export default function Landing() {
                   size="lg" 
                   className="h-11 sm:h-12 px-6 sm:px-8 text-base sm:text-lg shadow-lg shadow-primary/20 w-full sm:w-auto"
                   onClick={() => setShowWaitlistModal(true)}
+                  data-testid="button-hero-waitlist"
                 >
                   <Calendar className="mr-2 w-4 h-4" />
                   Join the Waitlist
@@ -156,14 +207,15 @@ export default function Landing() {
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="h-11 sm:h-12 px-6 sm:px-8 text-base sm:text-lg group w-full"
+                    className="h-11 sm:h-12 px-6 sm:px-8 text-base sm:text-lg group w-full bg-background/50 backdrop-blur-sm"
+                    data-testid="button-hero-learn-more"
                   >
                     <span>Learn More</span>
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
               </div>
-              <p className="text-sm text-muted-foreground pt-2">
+              <p className="text-sm text-foreground/80 md:text-muted-foreground pt-2 font-medium md:font-normal drop-shadow-sm">
                 Launching Q1 2026 - Get early access by joining the waitlist
               </p>
             </motion.div>
