@@ -67,6 +67,12 @@ Key collections:
 - **Replit Plugins**: Vite plugins for cartographer, dev banner, and runtime error modal (development only)
 - **Concurrently**: Running multiple dev servers simultaneously
 
+### Email Service
+- **Resend**: Email delivery service for waitlist verification and welcome emails
+  - Sends from: `hello@carbiooai.com`
+  - Beautiful HTML email templates for verification and welcome messages
+  - Rate-limited to prevent spam (5 requests per hour per IP)
+
 ### Key Environment Variables
 - `MONGODB_URI` / `MONGO_URI`: MongoDB connection string
 - `DATABASE_URL`: PostgreSQL connection (for Drizzle)
@@ -74,3 +80,17 @@ Key collections:
 - `GOOGLE_API_KEY`: Google Custom Search API key
 - `PIXABAY_API_KEY`: Pixabay API key
 - `NODE_ENV`: Environment mode (development/production)
+- `RESEND_API_KEY`: Resend API key for email delivery
+- `APP_URL`: Base URL for email verification links (defaults to REPLIT_DEV_DOMAIN)
+
+## Recent Changes
+
+### December 2024 - Landing Page & Waitlist Enhancement
+- **Enhanced Landing Page**: Added comprehensive content about Carbioo AI being "the first AI for sustainable construction", improved hero section, added problem/solution sections, impact statistics, and testimonials
+- **Overhauled About Page**: Clear messaging about mission to decarbonize construction, timeline, team section, and "first of its kind" positioning
+- **Enhanced Features Page**: Added core capabilities, comparison with traditional methods, how it works section
+- **Waitlist Modal**: Multi-step form with name, email validation, construction professional question with profession dropdown, interest reason field
+- **Welcome Popup**: Beautiful onboarding popup for new visitors with slides explaining Carbioo AI's value proposition
+- **Email Verification Flow**: Backend email verification using Resend, 24-hour token expiry, rate limiting, spam prevention
+- **Email Templates**: Professional HTML email templates for verification and welcome emails
+- **Waitlist Schema**: Extended to include firstName, lastName, isConstructionProfessional, profession, professionOther, nonProfessionalRole, interestReason, verification fields

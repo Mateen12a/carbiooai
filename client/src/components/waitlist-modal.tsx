@@ -108,6 +108,13 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: formData.email }),
         });
+        
+        if (!response.ok) {
+          setError("Failed to validate email. Please try again.");
+          setIsLoading(false);
+          return;
+        }
+        
         const data = await response.json();
         
         if (!data.valid && data.verified) {
