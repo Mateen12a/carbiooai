@@ -80,14 +80,14 @@ export default function Features() {
                   <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
                       Everything you need to measure, analyze, and reduce the carbon footprint of your construction projects. All powered by cutting-edge AI technology.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link href="/auth">
                         <Button size="lg" className="px-8">Try for Free <ArrowRight className="ml-2 w-4 h-4" /></Button>
                     </Link>
                     <Link href="/pricing">
                         <Button size="lg" variant="outline" className="px-8">View Pricing</Button>
                     </Link>
-                  </div>
+                  </div> */}
                 </motion.div>
             </div>
         </section>
@@ -265,14 +265,14 @@ export default function Features() {
                 Join thousands of architects and engineers already using Carbioo AI to build more sustainably.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/auth">
+                <Link href="/">
                   <Button size="lg" className="px-8 h-12 text-lg shadow-lg shadow-primary/30">
-                    Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
+                    Join waiting list <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
                 <Link href="/contact">
                   <Button size="lg" variant="outline" className="px-8 h-12 text-lg">
-                    Contact Sales
+                    Contact Us
                   </Button>
                 </Link>
               </div>

@@ -40,7 +40,7 @@ export default function Waitlist() {
         setIsSubmitted(true);
         toast({
           title: "You're on the list!",
-          description: "We'll notify you when Carbioo AI launches in February 2025.",
+          description: "We'll notify you when Carbioo AI launches in February 2026.",
         });
       } else {
         const data = await response.json();
@@ -92,7 +92,7 @@ export default function Waitlist() {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Logo linkTo="/" />
           <Badge variant="secondary" className="gap-1">
-            <Sparkles className="w-3 h-3" /> Coming February 2025
+            <Sparkles className="w-3 h-3" /> Coming February 2026
           </Badge>
         </div>
       </nav>
@@ -148,7 +148,7 @@ export default function Waitlist() {
                         </div>
                         <h3 className="text-2xl font-display font-bold">You're on the list!</h3>
                         <p className="text-muted-foreground">
-                          Thanks for joining. We'll send you an email when Carbioo AI launches in February 2025.
+                          Thanks for joining. We'll send you an email when Carbioo AI launches in February 2026.
                         </p>
                       </div>
                     ) : (
@@ -196,7 +196,7 @@ export default function Waitlist() {
                           </div>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Target className="w-4 h-4" />
-                            <span>February 2025</span>
+                            <span>February 2026</span>
                           </div>
                         </div>
                       </>

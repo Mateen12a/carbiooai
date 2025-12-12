@@ -16,6 +16,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 export default function Landing() {
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [verificationMessage, setVerificationMessage] = useState<{type: string; message: string} | null>(null);
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -36,7 +37,7 @@ export default function Landing() {
   const testimonials = [
     {
         name: "Sarah Chen",
-        role: "Lead Architect, BuildGreen",
+        role: "Architect",
         text: "I'm excited to see a platform that finally addresses the complexity of sustainable material selection. This could transform how we approach green building.",
         avatar: "SC"
     },
@@ -104,7 +105,7 @@ export default function Landing() {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             <Link href="/about" className="hover:text-primary transition-colors">About</Link>
             <Link href="/features" className="hover:text-primary transition-colors">Features</Link>
-            <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link>
+            {/* <Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link> */}
           </div>
 
           <div className="flex items-center gap-4">
@@ -163,7 +164,7 @@ export default function Landing() {
                 </Link>
               </div>
               <p className="text-sm text-muted-foreground pt-2">
-                Launching Q1 2025 - Get early access by joining the waitlist
+                Launching Q1 2026 - Get early access by joining the waitlist
               </p>
             </motion.div>
           </div>
@@ -293,7 +294,7 @@ export default function Landing() {
                 Be Part of Something Meaningful
               </h2>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Carbioo AI is launching in Q1 2025. Join our waitlist to get early access, exclusive updates, and help shape the future of sustainable construction.
+                Carbioo AI is launching in Q1 2026. Join our waitlist to get early access, exclusive updates, and help shape the future of sustainable construction.
               </p>
               <Button 
                 size="lg" 
@@ -327,9 +328,9 @@ export default function Landing() {
               <h4 className="font-bold mb-4">Product</h4>
               <ul className="space-y-2 text-sm text-slate-400">
                 <li><Link href="/features" className="hover:text-primary transition-colors">Features</Link></li>
-                <li><Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
-                <li><Link href="/api" className="hover:text-primary transition-colors">API</Link></li>
-                <li><Link href="/case-studies" className="hover:text-primary transition-colors">Case Studies</Link></li>
+                {/* <li><Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link></li> */}
+                {/* <li><Link href="/api" className="hover:text-primary transition-colors">API</Link></li> */}
+                {/* <li><Link href="/case-studies" className="hover:text-primary transition-colors">Case Studies</Link></li> */}
               </ul>
             </div>
 
@@ -337,8 +338,8 @@ export default function Landing() {
               <h4 className="font-bold mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-slate-400">
                 <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
+                {/* <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li> */}
+                {/* <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li> */}
                 <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
               </ul>
             </div>
@@ -353,7 +354,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="pt-8 border-t border-white/10 text-center text-slate-500 text-sm">
-            &copy; 2025 Carbioo AI. All rights reserved.
+            &copy; {currentYear} Carbioo AI. All rights reserved.
           </div>
         </div>
       </footer>

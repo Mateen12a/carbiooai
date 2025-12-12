@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
+const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_Z6U7Fzbc_PbNvk7drU1w7T6Vfjg36SVwo';
 const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
 
 const FROM_EMAIL = 'Carbioo AI <hello@carbiooai.com>';
@@ -12,7 +12,7 @@ export async function sendVerificationEmail(email: string, firstName: string, ve
       return false;
     }
     
-    const verificationUrl = `${process.env.APP_URL || 'https://' + process.env.REPLIT_DEV_DOMAIN}/api/waitlist/verify?token=${verificationToken}`;
+    const verificationUrl = `${process.env.APP_URL || 'https://carbiooai.com'}/api/waitlist/verify?token=${verificationToken}`;
     
     const { error } = await resend.emails.send({
       from: FROM_EMAIL,

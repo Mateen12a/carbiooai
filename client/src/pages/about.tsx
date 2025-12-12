@@ -39,10 +39,10 @@ export default function About() {
   ];
 
   const timeline = [
-    { year: "2023", title: "The Idea", desc: "Founded by a team of engineers and data scientists who saw the need for accessible environmental data in construction." },
-    { year: "2024", title: "Development", desc: "Building our proprietary material recognition AI, training on construction images and EPD data." },
-    { year: "Q1 2025", title: "Launch", desc: "Planned public launch of Carbioo AI platform with material analysis and alternative recommendation features." },
-    { year: "2025+", title: "Growth", desc: "Expanding our database and partnerships to cover materials and standards worldwide." },
+    { year: "2024", title: "The Idea", desc: "Founded by a team of engineers and data scientists who saw the need for accessible environmental data in construction." },
+    { year: "2025", title: "Development", desc: "Building our proprietary material recognition AI, training on construction images and EPD data." },
+    { year: "Q1 2026", title: "Launch", desc: "Planned public launch of Carbioo AI platform with material analysis and alternative recommendation features." },
+    { year: "2026+", title: "Growth", desc: "Expanding our database and partnerships to cover materials and standards worldwide." },
   ];
 
   const teamMembers = [
@@ -206,7 +206,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-20 bg-secondary/20">
+        {/* <section className="py-20 bg-secondary/20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
@@ -239,7 +239,7 @@ export default function About() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
         
         <section className="py-20 bg-slate-900 text-white text-center">
           <div className="container mx-auto px-4 max-w-2xl">
