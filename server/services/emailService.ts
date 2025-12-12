@@ -28,15 +28,16 @@ export async function sendVerificationEmail(email: string, firstName: string, ve
 <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc;">
   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
     <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 16px 16px 0 0; padding: 40px; text-align: center;">
-      <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-        <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
-            <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"/>
-          </svg>
-        </div>
-        <span style="font-size: 28px; font-weight: 700; color: white; letter-spacing: -0.5px;">Carbioo AI</span>
-      </div>
+      <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 20px auto;">
+        <tr>
+          <td style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; text-align: center; vertical-align: middle;">
+            <img src="https://img.icons8.com/fluency/48/leaf.png" alt="Carbioo" width="28" height="28" style="display: block; margin: auto;" />
+          </td>
+          <td style="padding-left: 12px;">
+            <span style="font-size: 28px; font-weight: 700; color: white; letter-spacing: -0.5px;">Carbioo AI</span>
+          </td>
+        </tr>
+      </table>
       <h1 style="color: white; font-size: 24px; font-weight: 600; margin: 0;">Verify Your Email</h1>
     </div>
     
@@ -111,20 +112,23 @@ export async function sendWelcomeEmail(email: string, firstName: string): Promis
 <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc;">
   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
     <div style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 16px 16px 0 0; padding: 48px 40px; text-align: center;">
-      <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: 24px;">
-        <div style="width: 56px; height: 56px; background: rgba(255,255,255,0.2); border-radius: 14px; display: flex; align-items: center; justify-content: center;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
-            <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"/>
-          </svg>
-        </div>
-        <span style="font-size: 32px; font-weight: 700; color: white; letter-spacing: -0.5px;">Carbioo AI</span>
-      </div>
-      <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
-      </div>
+      <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 24px auto;">
+        <tr>
+          <td style="width: 56px; height: 56px; background: rgba(255,255,255,0.2); border-radius: 14px; text-align: center; vertical-align: middle;">
+            <img src="https://img.icons8.com/fluency/48/leaf.png" alt="Carbioo" width="32" height="32" style="display: block; margin: auto;" />
+          </td>
+          <td style="padding-left: 12px;">
+            <span style="font-size: 32px; font-weight: 700; color: white; letter-spacing: -0.5px;">Carbioo AI</span>
+          </td>
+        </tr>
+      </table>
+      <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto 20px auto;">
+        <tr>
+          <td style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; text-align: center; vertical-align: middle;">
+            <img src="https://img.icons8.com/fluency/48/checkmark.png" alt="Success" width="40" height="40" style="display: block; margin: auto;" />
+          </td>
+        </tr>
+      </table>
       <h1 style="color: white; font-size: 28px; font-weight: 700; margin: 0;">You're In!</h1>
       <p style="color: rgba(255,255,255,0.9); font-size: 16px; margin: 12px 0 0 0;">Welcome to the future of sustainable construction</p>
     </div>
@@ -148,46 +152,53 @@ export async function sendWelcomeEmail(email: string, firstName: string): Promis
       
       <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin: 24px 0;">
         <h3 style="color: #1e293b; font-size: 16px; font-weight: 600; margin: 0 0 16px 0;">Why Carbioo AI?</h3>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <div style="display: flex; align-items: flex-start; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: #ecfdf5; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-            </div>
-            <div>
-              <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0 0 4px 0;">Instant Material Analysis</p>
-              <p style="font-size: 13px; color: #64748b; margin: 0;">Identify materials and their carbon footprint in seconds using AI</p>
-            </div>
-          </div>
-          <div style="display: flex; align-items: flex-start; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: #ecfdf5; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                <polyline points="2 17 12 22 22 17"/>
-                <polyline points="2 12 12 17 22 12"/>
-              </svg>
-            </div>
-            <div>
-              <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0 0 4px 0;">Smarter Alternatives</p>
-              <p style="font-size: 13px; color: #64748b; margin: 0;">Get AI-recommended eco-friendly substitutes that meet structural requirements</p>
-            </div>
-          </div>
-          <div style="display: flex; align-items: flex-start; gap: 12px;">
-            <div style="width: 32px; height: 32px; background: #ecfdf5; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                <path d="M2 12h20"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              </svg>
-            </div>
-            <div>
-              <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0 0 4px 0;">Industry First</p>
-              <p style="font-size: 13px; color: #64748b; margin: 0;">The first AI platform designed specifically for construction carbon reduction</p>
-            </div>
-          </div>
-        </div>
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td style="padding-bottom: 16px;">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="width: 32px; height: 32px; background: #ecfdf5; border-radius: 8px; text-align: center; vertical-align: middle;">
+                    <img src="https://img.icons8.com/fluency/32/time.png" alt="Clock" width="16" height="16" style="display: block; margin: auto;" />
+                  </td>
+                  <td style="padding-left: 12px; vertical-align: top;">
+                    <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0 0 4px 0;">Instant Material Analysis</p>
+                    <p style="font-size: 13px; color: #64748b; margin: 0;">Identify materials and their carbon footprint in seconds using AI</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-bottom: 16px;">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="width: 32px; height: 32px; background: #ecfdf5; border-radius: 8px; text-align: center; vertical-align: middle;">
+                    <img src="https://img.icons8.com/fluency/32/layers.png" alt="Layers" width="16" height="16" style="display: block; margin: auto;" />
+                  </td>
+                  <td style="padding-left: 12px; vertical-align: top;">
+                    <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0 0 4px 0;">Smarter Alternatives</p>
+                    <p style="font-size: 13px; color: #64748b; margin: 0;">Get AI-recommended eco-friendly substitutes that meet structural requirements</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="width: 32px; height: 32px; background: #ecfdf5; border-radius: 8px; text-align: center; vertical-align: middle;">
+                    <img src="https://img.icons8.com/fluency/32/globe.png" alt="Globe" width="16" height="16" style="display: block; margin: auto;" />
+                  </td>
+                  <td style="padding-left: 12px; vertical-align: top;">
+                    <p style="font-size: 14px; color: #1e293b; font-weight: 600; margin: 0 0 4px 0;">Industry First</p>
+                    <p style="font-size: 13px; color: #64748b; margin: 0;">The first AI platform designed specifically for construction carbon reduction</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
       </div>
       
       <p style="font-size: 16px; color: #475569; line-height: 1.6; margin: 24px 0 0 0;">
