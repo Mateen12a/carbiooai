@@ -8,7 +8,6 @@ import Landing from "@/pages/landing";
 import About from "@/pages/about";
 import Features from "@/pages/features";
 import Pricing from "@/pages/pricing";
-import Auth from "@/pages/auth";
 import Contact from "@/pages/contact";
 import CaseStudies from "@/pages/case-studies";
 import ApiDocs from "@/pages/api-docs";
@@ -24,7 +23,6 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/features" component={Features} />
       <Route path="/pricing" component={Pricing} />
-      <Route path="/auth" component={Auth} />
       <Route path="/contact" component={Contact} />
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/api" component={ApiDocs} />

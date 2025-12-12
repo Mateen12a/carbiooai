@@ -4,3 +4,8 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+RESEND_API_KEY = "re_Z6U7Fzbc_PbNvk7drU1w7T6Vfjg36SVwo"
