@@ -237,3 +237,38 @@ export async function sendWelcomeEmail(email: string, firstName: string): Promis
     return false;
   }
 }
+
+export async function sendContactNotification(contactData: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+}): Promise<boolean> {
+  try {
+    if (!resend) {
+      console.warn('Resend API key not configured. Contact notification not sent.');
+      return false;
+    }
+
+    const { error } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: 'hello@carbiooai.com', // Admin notification
+      subject: `New Contact Form Submission: ${contactData.firstName} ${contactData.lastName}`,
+      html: `
+        <h2>New Contact Message</h2>
+        <p><strong>From:</strong> ${contactData.firstName} ${contactData.lastName} (${contactData.email})</p>
+        <p><strong>Message:</strong></p>
+        <p>${contactData.message}</p>
+      `
+    });
+
+    if (error) {
+      console.error('Error sending contact notification:', error);
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error('Error sending contact notification:', error);
+    return false;
+  }
+}

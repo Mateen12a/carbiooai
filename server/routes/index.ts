@@ -6,6 +6,7 @@ import scanRoutes from './scans';
 import reportRoutes from './reports';
 import modelRoutes from './models';
 import waitlistRoutes from './waitlist';
+import contactRoutes from './contact';
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.use('/scans', scanRoutes);
 router.use('/reports', reportRoutes);
 router.use('/models', modelRoutes);
 router.use('/waitlist', waitlistRoutes);
+router.use('/contact', contactRoutes);
 
 router.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });

@@ -240,7 +240,7 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
                   <div>
                     <DialogTitle className="text-xl">Join the Waitlist</DialogTitle>
                     <DialogDescription className="text-sm">
-                      Be first to experience Carbioo AI
+                      Get early access to Carbioo AI
                     </DialogDescription>
                   </div>
                 </div>
@@ -437,14 +437,14 @@ export function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
                   <div className="space-y-4">
                     <div className="text-center mb-6">
                       <Sparkles className="w-12 h-12 mx-auto text-primary/60 mb-3" />
-                      <h3 className="text-lg font-semibold">Almost there!</h3>
-                      <p className="text-sm text-muted-foreground">One last thing (optional)</p>
+                      <h3 className="text-lg font-semibold">One last step</h3>
+                      <p className="text-sm text-muted-foreground">Tell us why you're interested (optional)</p>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="interestReason">Why are you interested in Carbioo AI?</Label>
+                      <Label htmlFor="interestReason">What brings you to Carbioo AI?</Label>
                       <Textarea
                         id="interestReason"
-                        placeholder="Tell us what excites you about sustainable construction..."
+                        placeholder="Tell us what you're looking for..."
                         value={formData.interestReason}
                         onChange={(e) => handleInputChange("interestReason", e.target.value)}
                         className="min-h-[100px]"

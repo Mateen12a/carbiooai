@@ -8,7 +8,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import heroImage from "@assets/generated_images/hero_image_for_sustainable_construction_app.png";
 import { Logo } from "@/components/logo";
 import { motion } from "framer-motion";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useState } from "react";
 import { WaitlistModal } from "@/components/waitlist-modal";
 
@@ -18,37 +17,31 @@ export default function About() {
   const values = [
     {
       icon: Target,
-      title: "Accuracy First",
-      desc: "We're training our AI models on millions of images to achieve exceptional recognition accuracy, because decisions about materials shouldn't be based on guesswork."
+      title: "Built on Facts",
+      desc: "We use millions of images to make sure our AI understands exactly what materials are being used."
     },
     {
       icon: Lightbulb,
-      title: "Innovation Driven",
-      desc: "We're constantly pushing the boundaries of what's possible with AI and sustainable technology, staying ahead of industry needs."
+      title: "Always Learning",
+      desc: "We stay ahead by constantly improving our technology to meet the needs of the building world."
     },
     {
       icon: Heart,
-      title: "Planet Focused",
-      desc: "Every feature we build is measured by its potential to reduce carbon emissions. Our success will be measured in tons of CO2 saved."
+      title: "For the Planet",
+      desc: "Our goal is simple: help builders reduce carbon emissions and save our environment."
     },
     {
       icon: Users,
-      title: "Community Built",
-      desc: "We collaborate with architects, engineers, and sustainability experts worldwide to ensure our platform serves real needs."
+      title: "Built with Experts",
+      desc: "We work with builders and engineers to make sure our tools solve real-world problems."
     },
   ];
 
   const timeline = [
-    { year: "2025", title: "The Idea", desc: "Founded by a team of IT professionals who saw the need for accessible environmental data in construction." },
-    { year: "2025", title: "Development", desc: "Building our proprietary material recognition AI, training on construction images, ICE and EPD data." },
-    { year: "Q1 2026", title: "Launch", desc: "Planned public launch of Carbioo AI platform with material analysis and alternative recommendation features." },
-    { year: "2026+", title: "Growth", desc: "Expanding our database and partnerships to cover materials and standards worldwide." },
-  ];
-
-  const teamMembers = [
-    { name: "Alex Chen", role: "CEO & Co-Founder", bio: "Engineer with 10+ years experience. Passionate about sustainable building solutions.", avatar: "AC" },
-    { name: "Dr. Maya Patel", role: "CTO & Co-Founder", bio: "PhD in Computer Vision. Previously worked in AI research at leading tech companies.", avatar: "MP" },
-    { name: "James Morrison", role: "Head of Sustainability", bio: "Sustainability expert with deep experience in green building standards and lifecycle assessment.", avatar: "JM" },
+    { year: "2025", title: "The Idea", desc: "Our team saw that builders needed better data to choose greener materials." },
+    { year: "2025", title: "Building the AI", desc: "Teaching our technology to recognize materials and calculate their impact." },
+    { year: "Q1 2026", title: "Launch Day", desc: "Opening Carbioo AI to help everyone build more sustainably." },
+    { year: "2026+", title: "Growing Together", desc: "Adding more materials and data to help builders everywhere." },
   ];
 
   return (
@@ -78,13 +71,13 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold mb-6">
-                <Building2 className="w-4 h-4" /> About Carbioo AI
+                <Building2 className="w-4 h-4" /> About Us
               </span>
               <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-                Our Mission is to <span className="text-primary">Decarbonize Construction</span>
+                Helping the world <span className="text-primary">build greener</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                Construction is responsible for 39% of global carbon emissions. We believe that with the right tools, every architect, engineer, and builder can be part of the solution. Carbioo AI is building the first platform that makes sustainable material choices instant, accurate, and accessible.
+                Building accounts for nearly 40% of the world's carbon emissions. We believe that if builders have the right information, they can make better choices. Carbioo AI makes it easy to find and use sustainable materials.
               </p>
             </motion.div>
           </div>
@@ -104,29 +97,26 @@ export default function About() {
                 <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
                   Our Story
                 </span>
-                <h2 className="text-3xl font-display font-bold">Building for a Sustainable Future</h2>
+                <h2 className="text-3xl font-display font-bold">Better tools for a better future</h2>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  Carbioo AI was founded in 2025 by a team of IT professionals who were frustrated by the lack of slow and transparent environmental data in the construction industry.
+                  We started Carbioo AI because we saw that finding green building data was too slow and confusing.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  We realized that while sustainable alternatives existed, they were often hard to find or difficult to compare against standard materials. We set out to change that by building a comprehensive material intelligence platform, powered by cutting-edge AI.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Today, we're developing the first platform that combines computer vision, lifecycle assessment data, and machine learning to give construction professionals instant, actionable insights about material sustainability.
+                  We wanted to make sustainable building accessible to everyone. By combining AI with clear data, we give professionals the insights they need to build with the planet in mind.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50">
                     <Globe className="w-6 h-6 text-primary shrink-0" />
                     <div>
-                      <h4 className="font-bold text-sm">Global Database</h4>
-                      <p className="text-xs text-muted-foreground">Sourcing from certified EPDs worldwide.</p>
+                      <h4 className="font-bold text-sm">Global Info</h4>
+                      <p className="text-xs text-muted-foreground">Using data from verified sources worldwide.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50">
                     <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
                     <div>
-                      <h4 className="font-bold text-sm">Verified Data</h4>
-                      <p className="text-xs text-muted-foreground">ISO 14040 compliant lifecycle assessments.</p>
+                      <h4 className="font-bold text-sm">Verified Facts</h4>
+                      <p className="text-xs text-muted-foreground">Accurate information you can trust.</p>
                     </div>
                   </div>
                 </div>
@@ -138,12 +128,9 @@ export default function About() {
         <section className="py-20 bg-secondary/20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
-                Our Values
-              </span>
-              <h2 className="text-3xl font-display font-bold mb-4">What Drives Us</h2>
+              <h2 className="text-3xl font-display font-bold mb-4">What Guides Us</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Every decision we make is guided by these core principles.
+                These principles help us build a platform that truly helps the planet.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -172,10 +159,7 @@ export default function About() {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
-                Our Journey
-              </span>
-              <h2 className="text-3xl font-display font-bold mb-4">The Road to Launch</h2>
+              <h2 className="text-3xl font-display font-bold mb-4">Our Journey</h2>
             </div>
             <div className="max-w-3xl mx-auto">
               {timeline.map((item, i) => (
@@ -206,47 +190,12 @@ export default function About() {
           </div>
         </section>
 
-        {/* <section className="py-20 bg-secondary/20">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
-                Leadership
-              </span>
-              <h2 className="text-3xl font-display font-bold mb-4">Meet Our Team</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                A diverse team of engineers and technologists united by a common mission.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {teamMembers.map((member, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Card className="text-center bg-background">
-                    <CardContent className="pt-8">
-                      <Avatar className="w-24 h-24 mx-auto mb-4 border-4 border-primary/20">
-                        <AvatarFallback className="text-2xl font-bold bg-primary/10 text-primary">{member.avatar}</AvatarFallback>
-                      </Avatar>
-                      <h3 className="font-bold text-lg">{member.name}</h3>
-                      <p className="text-sm text-primary mb-3">{member.role}</p>
-                      <p className="text-sm text-muted-foreground">{member.bio}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section> */}
-        
         <section className="py-20 bg-slate-900 text-white text-center">
           <div className="container mx-auto px-4 max-w-2xl">
             <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
-            <h2 className="text-3xl font-display font-bold mb-6">Join Us on This Journey</h2>
+            <h2 className="text-3xl font-display font-bold mb-6">Join Us</h2>
             <p className="text-slate-300 mb-8 text-lg">
-              Whether you're a construction professional, sustainability enthusiast, or simply care about building a greener future, we'd love for you to be part of our community.
+              Whether you build, design, or just care about the planet, we'd love for you to join us.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -257,15 +206,9 @@ export default function About() {
                 <Calendar className="mr-2 w-4 h-4" />
                 Join the Waitlist
               </Button>
-              <Link href="/features">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10">
-                  Explore Features <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
             </div>
           </div>
         </section>
-
       </main>
       
       <footer className="bg-slate-950 text-white py-12 border-t border-white/10">
