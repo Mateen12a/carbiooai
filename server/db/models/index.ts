@@ -4,3 +4,4 @@ export { Scan, type IScan, type IScanPrediction } from './Scan';
 export { Report, type IReport } from './Report';
 export { MLModel, type IMLModel } from './MLModel';
 export { Contact, type IContact } from './Contact';
+export { InvestorInterest, type IInvestorInterest } from './InvestorInterest';

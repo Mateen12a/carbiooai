@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npx tsx watch server/index.ts",
+    "dev": "tsx watch server/index.ts",
     "dev:both": "concurrently \"npm run dev\" \"npm run dev:mlstudio\"",
     "dev:mlstudio": "cd MLStudio-main && npm run dev",
     "build": "vite build && esbuild server/index.ts --bundle --platform=node --outdir=dist --format=esm --packages=external",

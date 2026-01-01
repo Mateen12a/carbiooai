@@ -17,23 +17,23 @@ export default function About() {
   const values = [
     {
       icon: Target,
-      title: "Data-Driven Certainty",
-      desc: "We replace guesswork with precision, ensuring every material choice is backed by global sustainability standards."
+      title: "Simple Data",
+      desc: "We take complex environmental data and make it easy to understand for any project."
     },
     {
       icon: Zap,
-      title: "Built for Velocity",
-      desc: "Speed is the key to scaling green building. We provide instant insights so you can build better, faster."
+      title: "Built for Speed",
+      desc: "Get the answers you need in seconds so you can keep your project moving."
     },
     {
       icon: Leaf,
-      title: "Outcome Obsessed",
-      desc: "We don't just track data; we drive lower carbon outcomes for every project, from retrofit to new build."
+      title: "Real Results",
+      desc: "We help you find ways to lower carbon on every job, from small homes to big offices."
     },
     {
       icon: Globe,
-      title: "The New Standard",
-      desc: "Sustainable construction isn't a feature; it's the future. We're building the infrastructure to make it inevitable."
+      title: "The Standard",
+      desc: "We're making green building the normal way to build, all around the world."
     },
   ];
 
@@ -74,11 +74,11 @@ export default function About() {
                 <Building2 className="w-4 h-4" /> The Mission
               </span>
               <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight">
-                Decarbonizing construction <br />
-                <span className="text-primary italic">at scale.</span>
+                Building for a <br />
+                <span className="text-primary italic">greener future.</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto font-medium">
-                Construction accounts for 40% of global emissions. We aren't just building a tool; we're building the intelligence layer that makes sustainable building inevitable.
+                We're making sustainable construction easy for everyone. Carbioo helps you choose better materials so you can build projects that are good for the planet.
               </p>
             </motion.div>
           </div>
@@ -99,12 +99,12 @@ export default function About() {
               </div>
               <div className="space-y-8">
                 <div className="space-y-4">
-                  <h2 className="text-4xl font-display font-bold tracking-tight">From Complexity to Clarity</h2>
+                  <h2 className="text-4xl font-display font-bold tracking-tight">Simple and Clear</h2>
                   <p className="text-muted-foreground leading-relaxed text-lg">
-                    The path to Net Zero is currently blocked by fragmented data and manual processes. We solve this by providing a single, authoritative source for material intelligence.
+                    It shouldn't be hard to build green. We solve this by giving you one clear place to find everything you need to know about building materials.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    By empowering architects, surveyors, and developers with instant, verified carbon data, we're removing the friction from sustainable decision-making. This is the new standard for modern building.
+                    By giving architects and builders clear carbon data, we're making it easy to make better choices. This is the new way to build.
                   </p>
                 </div>
                 

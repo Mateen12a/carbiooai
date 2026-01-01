@@ -7,6 +7,7 @@ import reportRoutes from './reports';
 import modelRoutes from './models';
 import waitlistRoutes from './waitlist';
 import contactRoutes from './contact';
+import investorRoutes from './investor';
 
 const router = Router();
 
@@ -18,6 +19,7 @@ router.use('/reports', reportRoutes);
 router.use('/models', modelRoutes);
 router.use('/waitlist', waitlistRoutes);
 router.use('/contact', contactRoutes);
+router.use('/investor', investorRoutes);
 
 router.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });

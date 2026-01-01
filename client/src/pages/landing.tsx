@@ -42,23 +42,23 @@ export default function Landing() {
   }, []);
 
   const problemPoints = [
-    "Construction creates 39% of global carbon emissions",
-    "Finding green material data is slow and difficult",
-    "Comparing sustainable options often takes too much time",
-    "Most builders lack easy tools to make better choices",
+    "Building materials are responsible for almost 40% of global carbon emissions",
+    "Finding green data is slow and difficult",
+    "Comparing sustainable choices takes too much time",
+    "Most builders don't have simple tools to make better choices",
   ];
 
   const solutionPoints = [
-    { title: "Fast Analysis", desc: "Know exactly what you're building with in seconds", icon: Zap },
-    { title: "Smart Recognition", desc: "Our AI identifies materials automatically", icon: Sparkles },
-    { title: "Green Choices", desc: "Find better alternatives that match your needs", icon: Leaf },
-    { title: "Verified Data", desc: "Trust info from certified global sources", icon: Globe },
+    { title: "Point & Scan", desc: "Just point your camera to identify any material", icon: Zap },
+    { title: "See the Impact", desc: "Get clear carbon data for everything you build", icon: Sparkles },
+    { title: "Find Better", desc: "Get smart suggestions for greener alternatives", icon: Leaf },
+    { title: "Trust the Data", desc: "Information backed by global building standards", icon: Globe },
   ];
 
   const features = [
-    { icon: Zap, title: "Know Your Materials", desc: "Identify what you use instantly with our smart scanning tool." },
-    { icon: BarChart3, title: "Carbon Tracking", desc: "See your project's environmental footprint as you build." },
-    { icon: Leaf, title: "Better Options", desc: "Get recommendations for sustainable materials that actually work." }
+    { icon: Zap, title: "Smart Recognition", desc: "Take a photo of a material and our AI tells you exactly what it is." },
+    { icon: BarChart3, title: "Carbon Scores", desc: "We show you the environmental impact of your choices in simple numbers." },
+    { icon: Leaf, title: "Green Alternatives", desc: "Find better materials that save carbon without slowing you down." }
   ];
 
   return (
@@ -152,20 +152,20 @@ export default function Landing() {
                 <Building2 className="w-3 h-3" /> Coming Soon
               </div>
               <h1 className="text-3xl sm:text-5xl md:text-7xl font-display font-bold leading-tight text-foreground drop-shadow-sm">
-                Build Smarter.<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-600">Build Greener.</span>
+                The New Way<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-600">to Build.</span>
               </h1>
               <p className="text-base sm:text-lg text-foreground/90 md:text-muted-foreground max-w-lg font-medium md:font-normal drop-shadow-sm">
-                We're creating the first AI platform that helps you choose better construction materials, see their environmental impact, and find sustainable alternatives in seconds.
+                Carbioo helps you find the best building materials in seconds. Scan any material to see its carbon footprint and find eco-friendly alternatives instantly.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4">
                 <Button 
                   size="lg" 
-                  className="h-11 sm:h-12 px-6 sm:px-8 text-base sm:text-lg shadow-lg shadow-primary/20 w-full sm:w-auto"
+                  className="h-11 sm:h-12 px-6 sm:px-8 text-base sm:text-lg shadow-lg shadow-primary/20 w-full sm:w-auto font-bold"
                   onClick={() => setShowWaitlistModal(true)}
                 >
                   <Calendar className="mr-2 w-4 h-4" />
-                  Join the Waitlist
+                  Join the Movement
                 </Button>
                 <Link href="/about" className="w-full sm:w-auto">
                   <Button 
@@ -248,8 +248,8 @@ export default function Landing() {
         <section className="bg-secondary/20 py-24">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-display font-bold mb-4">What We're Building</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">Tools built to help you make better environmental choices on every project.</p>
+              <h2 className="text-3xl font-display font-bold mb-4">How it Works</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">Simple tools to help you make better choices for the planet on every project.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((feature, i) => (
