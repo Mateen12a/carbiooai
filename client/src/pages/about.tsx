@@ -17,31 +17,31 @@ export default function About() {
   const values = [
     {
       icon: Target,
-      title: "Built on Facts",
-      desc: "We use millions of images to make sure our AI understands exactly what materials are being used."
+      title: "Built on Clarity",
+      desc: "We focus on making complex information simple, clear, and easy to understand."
     },
     {
       icon: Lightbulb,
-      title: "Always Learning",
-      desc: "We stay ahead by constantly improving our technology to meet the needs of the building world."
+      title: "Designed for Real Life",
+      desc: "Everything we build is shaped by how people actually build, plan, and make decisions."
     },
     {
       icon: Heart,
       title: "For the Planet",
-      desc: "Our goal is simple: help builders reduce carbon emissions and save our environment."
+      desc: "Every better material choice helps reduce impact and protect the future."
     },
     {
       icon: Users,
-      title: "Built with Experts",
-      desc: "We work with builders and engineers to make sure our tools solve real-world problems."
+      title: "Built for Everyone",
+      desc: "From professionals to everyday decision makers, sustainability should be accessible."
     },
   ];
 
   const timeline = [
-    { year: "2025", title: "The Idea", desc: "Our team saw that builders needed better data to choose greener materials." },
-    { year: "2025", title: "Building the AI", desc: "Teaching our technology to recognize materials and calculate their impact." },
-    { year: "Q1 2026", title: "Launch Day", desc: "Opening Carbioo AI to help everyone build more sustainably." },
-    { year: "2026+", title: "Growing Together", desc: "Adding more materials and data to help builders everywhere." },
+    { year: "2025", title: "The Question", desc: "Why is it still so hard to understand the impact of building materials?" },
+    { year: "2025", title: "The Vision", desc: "Create a simple way to see materials, impact, and better options clearly." },
+    { year: "Q1 2026", title: "The Launch", desc: "Opening Carbioo AI to early users and partners." },
+    { year: "Beyond", title: "The Future", desc: "Expanding materials, insights, and reach across the built world." },
   ];
 
   return (
@@ -53,7 +53,7 @@ export default function About() {
           <Logo linkTo="/" />
           <Link href="/">
             <Button variant="ghost" className="text-muted-foreground">
-                <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
+              <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
             </Button>
           </Link>
         </div>
@@ -71,13 +71,13 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold mb-6">
-                <Building2 className="w-4 h-4" /> About Us
+                <Building2 className="w-4 h-4" /> About Carbioo AI
               </span>
               <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-                Helping the world <span className="text-primary">build greener</span>
+                Rethinking how the world builds
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                Building accounts for nearly 40% of the world's carbon emissions. We believe that if builders have the right information, they can make better choices. Carbioo AI makes it easy to find and use sustainable materials.
+                The way we build shapes our future. Carbioo AI exists to make material choices clearer, smarter, and more sustainable from the very beginning.
               </p>
             </motion.div>
           </div>
@@ -94,29 +94,35 @@ export default function About() {
                 />
               </div>
               <div className="space-y-6">
-                <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+                <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase">
                   Our Story
                 </span>
-                <h2 className="text-3xl font-display font-bold">Better tools for a better future</h2>
+                <h2 className="text-3xl font-display font-bold">
+                  Making better building decisions possible
+                </h2>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  We started Carbioo AI because we saw that finding green building data was too slow and confusing.
+                  Buildings account for a significant share of global emissions, yet understanding material impact remains confusing and fragmented.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  We wanted to make sustainable building accessible to everyone. By combining AI with clear data, we give professionals the insights they need to build with the planet in mind.
+                  Carbioo AI was created to change that. We are building a platform that brings clarity to materials, environmental impact, and better alternatives so decisions can be made earlier and with confidence.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50">
                     <Globe className="w-6 h-6 text-primary shrink-0" />
                     <div>
-                      <h4 className="font-bold text-sm">Global Info</h4>
-                      <p className="text-xs text-muted-foreground">Using data from verified sources worldwide.</p>
+                      <h4 className="font-bold text-sm">Global Perspective</h4>
+                      <p className="text-xs text-muted-foreground">
+                        Built with widely trusted sustainability data sources.
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50">
                     <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
                     <div>
-                      <h4 className="font-bold text-sm">Verified Facts</h4>
-                      <p className="text-xs text-muted-foreground">Accurate information you can trust.</p>
+                      <h4 className="font-bold text-sm">Trust and Transparency</h4>
+                      <p className="text-xs text-muted-foreground">
+                        Clear insights without unnecessary complexity.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -128,9 +134,11 @@ export default function About() {
         <section className="py-20 bg-secondary/20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-display font-bold mb-4">What Guides Us</h2>
+              <h2 className="text-3xl font-display font-bold mb-4">
+                What Guides Us
+              </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                These principles help us build a platform that truly helps the planet.
+                These values shape everything we build and how we build it.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -159,7 +167,9 @@ export default function About() {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-display font-bold mb-4">Our Journey</h2>
+              <h2 className="text-3xl font-display font-bold">
+                Our Journey
+              </h2>
             </div>
             <div className="max-w-3xl mx-auto">
               {timeline.map((item, i) => (
@@ -168,18 +178,15 @@ export default function About() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex gap-6 mb-8 last:mb-0"
+                  className="flex gap-6 mb-8"
                 >
                   <div className="flex flex-col items-center">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${i === 2 ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
-                      {i === 0 && <Lightbulb className="w-5 h-5" />}
-                      {i === 1 && <Zap className="w-5 h-5" />}
-                      {i === 2 && <Sparkles className="w-5 h-5" />}
-                      {i === 3 && <Globe className="w-5 h-5" />}
+                    <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                      <Sparkles className="w-5 h-5" />
                     </div>
                     {i < timeline.length - 1 && <div className="w-0.5 h-full bg-border mt-2" />}
                   </div>
-                  <div className="flex-1 pb-8">
+                  <div>
                     <span className="text-sm font-bold text-primary">{item.year}</span>
                     <h3 className="text-xl font-bold mt-1 mb-2">{item.title}</h3>
                     <p className="text-muted-foreground">{item.desc}</p>
@@ -193,27 +200,27 @@ export default function About() {
         <section className="py-20 bg-slate-900 text-white text-center">
           <div className="container mx-auto px-4 max-w-2xl">
             <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
-            <h2 className="text-3xl font-display font-bold mb-6">Join Us</h2>
+            <h2 className="text-3xl font-display font-bold mb-6">
+              Be part of what comes next
+            </h2>
             <p className="text-slate-300 mb-8 text-lg">
-              Whether you build, design, or just care about the planet, we'd love for you to join us.
+              Whether you build, design, invest, or simply care about the future, Carbioo AI is being built for you.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="px-8"
-                onClick={() => setShowWaitlistModal(true)}
-              >
-                <Calendar className="mr-2 w-4 h-4" />
-                Join the Waitlist
-              </Button>
-            </div>
+            <Button 
+              size="lg" 
+              className="px-8"
+              onClick={() => setShowWaitlistModal(true)}
+            >
+              <Calendar className="mr-2 w-4 h-4" />
+              Join the Waitlist
+            </Button>
           </div>
         </section>
       </main>
       
       <footer className="bg-slate-950 text-white py-12 border-t border-white/10">
         <div className="container mx-auto px-4 text-center text-slate-500 text-sm">
-            &copy; 2025 Carbioo AI. All rights reserved.
+          © 2025 Carbioo AI. All rights reserved.
         </div>
       </footer>
     </div>

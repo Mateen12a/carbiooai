@@ -42,7 +42,7 @@ export default function Waitlist() {
         setIsSubmitted(true);
         toast({
           title: "You're on the list!",
-          description: "We'll notify you when Carbioo AI launches in February 2026.",
+          description: "You are on the early access list. We will reach out as we invite professionals to test and shape Carbioo AI.",
         });
       } else {
         const data = await response.json();
@@ -156,9 +156,9 @@ export default function Waitlist() {
                     ) : (
                       <>
                         <div className="text-center mb-6">
-                          <h3 className="text-2xl font-display font-bold mb-2">Join the Waitlist</h3>
+                          <h3 className="text-2xl font-display font-bold mb-2">Join the Early Access Waitlist</h3>
                           <p className="text-muted-foreground text-sm">
-                            Be among the first to experience AI-powered sustainable construction.
+                            We are working with professionals shaping how material and carbon assessments are done.
                           </p>
                         </div>
                         
