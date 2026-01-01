@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { 
-  ArrowLeft, Users, Globe, ShieldCheck, Target, Lightbulb, Heart, 
-  Leaf, Building2, ArrowRight, Sparkles, Zap, Calendar
+  ArrowLeft, Globe, ShieldCheck, Target, Lightbulb, Heart, 
+  Leaf, Building2, Sparkles, Zap, Calendar, TrendingDown
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import heroImage from "@assets/generated_images/hero_image_for_sustainable_construction_app.png";
@@ -17,31 +17,31 @@ export default function About() {
   const values = [
     {
       icon: Target,
-      title: "Built on Clarity",
-      desc: "We focus on making complex information simple, clear, and easy to understand."
+      title: "Data-Driven Certainty",
+      desc: "We replace guesswork with precision, ensuring every material choice is backed by global sustainability standards."
     },
     {
-      icon: Lightbulb,
-      title: "Designed for Real Life",
-      desc: "Everything we build is shaped by how people actually build, plan, and make decisions."
+      icon: Zap,
+      title: "Built for Velocity",
+      desc: "Speed is the key to scaling green building. We provide instant insights so you can build better, faster."
     },
     {
-      icon: Heart,
-      title: "For the Planet",
-      desc: "Every better material choice helps reduce impact and protect the future."
+      icon: Leaf,
+      title: "Outcome Obsessed",
+      desc: "We don't just track data; we drive lower carbon outcomes for every project, from retrofit to new build."
     },
     {
-      icon: Users,
-      title: "Built for Everyone",
-      desc: "From professionals to everyday decision makers, sustainability should be accessible."
+      icon: Globe,
+      title: "The New Standard",
+      desc: "Sustainable construction isn't a feature; it's the future. We're building the infrastructure to make it inevitable."
     },
   ];
 
   const timeline = [
-    { year: "2025", title: "The Question", desc: "Why is it still so hard to understand the impact of building materials?" },
-    { year: "2025", title: "The Vision", desc: "Create a simple way to see materials, impact, and better options clearly." },
-    { year: "Q1 2026", title: "The Launch", desc: "Opening Carbioo AI to early users and partners." },
-    { year: "Beyond", title: "The Future", desc: "Expanding materials, insights, and reach across the built world." },
+    { year: "2025", title: "The Vision", desc: "Identified the critical data gap preventing the construction industry from reaching Net Zero." },
+    { year: "2025", title: "Infrastructure Build", desc: "Developing the world's most comprehensive intelligence layer for building materials." },
+    { year: "Q1 2026", title: "Global Launch", desc: "Carbioo AI becomes available to professionals ready to lead the sustainable transition." },
+    { year: "2026+", title: "Industry Standard", desc: "Scaling across every project phase to make low-carbon building the default choice globally." },
   ];
 
   return (
@@ -53,15 +53,15 @@ export default function About() {
           <Logo linkTo="/" />
           <Link href="/">
             <Button variant="ghost" className="text-muted-foreground">
-              <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
+                <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
             </Button>
           </Link>
         </div>
       </nav>
 
       <main>
-        <section className="relative py-24 overflow-hidden">
-          <div className="absolute inset-0 z-0 opacity-10">
+        <section className="relative py-24 overflow-hidden border-b border-border/50">
+          <div className="absolute inset-0 z-0 opacity-5 grayscale">
             <img src={heroImage} alt="Construction Site" className="w-full h-full object-cover" />
           </div>
           <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
@@ -71,58 +71,60 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold mb-6">
-                <Building2 className="w-4 h-4" /> About Carbioo AI
+                <Building2 className="w-4 h-4" /> The Mission
               </span>
-              <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
-                Rethinking how the world builds
+              <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight">
+                Decarbonizing construction <br />
+                <span className="text-primary italic">at scale.</span>
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                The way we build shapes our future. Carbioo AI exists to make material choices clearer, smarter, and more sustainable from the very beginning.
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto font-medium">
+                Construction accounts for 40% of global emissions. We aren't just building a tool; we're building the intelligence layer that makes sustainable building inevitable.
               </p>
             </motion.div>
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-24">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
               <div>
-                <img 
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Team working" 
-                  className="rounded-2xl shadow-2xl"
-                />
+                <div className="relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200" 
+                    alt="Strategic Planning" 
+                    className="rounded-2xl shadow-2xl relative z-10"
+                  />
+                  <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-primary/20 rounded-2xl z-0" />
+                </div>
               </div>
-              <div className="space-y-6">
-                <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase">
-                  Our Story
-                </span>
-                <h2 className="text-3xl font-display font-bold">
-                  Making better building decisions possible
-                </h2>
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  Buildings account for a significant share of global emissions, yet understanding material impact remains confusing and fragmented.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Carbioo AI was created to change that. We are building a platform that brings clarity to materials, environmental impact, and better alternatives so decisions can be made earlier and with confidence.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                  <div className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50">
-                    <Globe className="w-6 h-6 text-primary shrink-0" />
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <h2 className="text-4xl font-display font-bold tracking-tight">From Complexity to Clarity</h2>
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    The path to Net Zero is currently blocked by fragmented data and manual processes. We solve this by providing a single, authoritative source for material intelligence.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    By empowering architects, surveyors, and developers with instant, verified carbon data, we're removing the friction from sustainable decision-making. This is the new standard for modern building.
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-3 p-6 rounded-2xl bg-secondary/30 border border-border/50">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <ShieldCheck className="w-5 h-5 text-primary" />
+                    </div>
                     <div>
-                      <h4 className="font-bold text-sm">Global Perspective</h4>
-                      <p className="text-xs text-muted-foreground">
-                        Built with widely trusted sustainability data sources.
-                      </p>
+                      <h4 className="font-bold text-base">Authority</h4>
+                      <p className="text-sm text-muted-foreground">Verified data you can bank on.</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 p-4 rounded-xl bg-secondary/50">
-                    <ShieldCheck className="w-6 h-6 text-primary shrink-0" />
+                  <div className="flex flex-col gap-3 p-6 rounded-2xl bg-secondary/30 border border-border/50">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <TrendingDown className="w-5 h-5 text-primary" />
+                    </div>
                     <div>
-                      <h4 className="font-bold text-sm">Trust and Transparency</h4>
-                      <p className="text-xs text-muted-foreground">
-                        Clear insights without unnecessary complexity.
-                      </p>
+                      <h4 className="font-bold text-base">Impact</h4>
+                      <p className="text-sm text-muted-foreground">Direct path to lower carbon.</p>
                     </div>
                   </div>
                 </div>
@@ -131,17 +133,15 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-20 bg-secondary/20">
+        <section className="py-24 bg-secondary/10">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-display font-bold mb-4">
-                What Guides Us
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                These values shape everything we build and how we build it.
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="text-4xl font-display font-bold tracking-tight">Our Core Principles</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                The pillars of our commitment to the future of the built environment.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, i) => (
                 <motion.div
                   key={i}
@@ -149,13 +149,13 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <Card className="h-full bg-background hover:shadow-lg transition-shadow">
-                    <CardContent className="pt-6">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <Card className="h-full bg-background border-border/50 hover:border-primary/50 transition-all shadow-sm">
+                    <CardContent className="pt-8 p-6">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
                         <value.icon className="w-6 h-6 text-primary" />
                       </div>
-                      <h3 className="font-bold text-lg mb-2">{value.title}</h3>
-                      <p className="text-sm text-muted-foreground">{value.desc}</p>
+                      <h3 className="font-bold text-xl mb-3">{value.title}</h3>
+                      <p className="text-muted-foreground leading-relaxed">{value.desc}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -164,32 +164,33 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-24">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-display font-bold">
-                Our Journey
-              </h2>
+            <div className="text-center mb-20">
+              <h2 className="text-4xl font-display font-bold tracking-tight">The Road to 2026</h2>
             </div>
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-4xl mx-auto relative">
+              <div className="absolute left-[23px] top-0 bottom-0 w-0.5 bg-border hidden md:block" />
               {timeline.map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex gap-6 mb-8"
+                  className="flex flex-col md:flex-row gap-8 mb-16 last:mb-0"
                 >
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                      <Sparkles className="w-5 h-5" />
+                  <div className="relative z-10">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${i === 2 ? 'bg-primary text-white scale-110' : 'bg-background border-2 border-border text-primary'}`}>
+                      {i === 0 && <Lightbulb className="w-5 h-5" />}
+                      {i === 1 && <Zap className="w-5 h-5" />}
+                      {i === 2 && <Sparkles className="w-5 h-5" />}
+                      {i === 3 && <Globe className="w-5 h-5" />}
                     </div>
-                    {i < timeline.length - 1 && <div className="w-0.5 h-full bg-border mt-2" />}
                   </div>
-                  <div>
-                    <span className="text-sm font-bold text-primary">{item.year}</span>
-                    <h3 className="text-xl font-bold mt-1 mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.desc}</p>
+                  <div className="flex-1 pt-1">
+                    <span className="text-sm font-bold text-primary uppercase tracking-widest">{item.year}</span>
+                    <h3 className="text-2xl font-bold mt-2 mb-3 tracking-tight">{item.title}</h3>
+                    <p className="text-muted-foreground text-lg leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -197,30 +198,34 @@ export default function About() {
           </div>
         </section>
 
-        <section className="py-20 bg-slate-900 text-white text-center">
-          <div className="container mx-auto px-4 max-w-2xl">
-            <Sparkles className="w-12 h-12 text-primary mx-auto mb-6" />
-            <h2 className="text-3xl font-display font-bold mb-6">
-              Be part of what comes next
-            </h2>
-            <p className="text-slate-300 mb-8 text-lg">
-              Whether you build, design, invest, or simply care about the future, Carbioo AI is being built for you.
+        <section className="py-32 bg-slate-950 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.15),transparent_70%)]" />
+          <div className="container mx-auto px-4 max-w-3xl text-center relative z-10">
+            <Sparkles className="w-16 h-16 text-primary mx-auto mb-8" />
+            <h2 className="text-5xl font-display font-bold mb-8 tracking-tight">Be part of the shift.</h2>
+            <p className="text-slate-300 mb-12 text-xl font-light leading-relaxed">
+              We are inviting the industry's leaders to join us. Secure your position on the waitlist for our Q1 2026 launch.
             </p>
-            <Button 
-              size="lg" 
-              className="px-8"
-              onClick={() => setShowWaitlistModal(true)}
-            >
-              <Calendar className="mr-2 w-4 h-4" />
-              Join the Waitlist
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="px-12 py-7 text-lg font-bold rounded-xl shadow-xl shadow-primary/20"
+                onClick={() => setShowWaitlistModal(true)}
+              >
+                <Calendar className="mr-3 w-5 h-5" />
+                Join the Movement
+              </Button>
+            </div>
           </div>
         </section>
       </main>
       
-      <footer className="bg-slate-950 text-white py-12 border-t border-white/10">
-        <div className="container mx-auto px-4 text-center text-slate-500 text-sm">
-          © 2025 Carbioo AI. All rights reserved.
+      <footer className="bg-slate-950 text-white py-16 border-t border-white/5">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+          <Logo size="md" linkTo="/" />
+          <div className="text-slate-500 text-sm">
+            &copy; 2025 Carbioo AI. Building the future of sustainable construction.
+          </div>
         </div>
       </footer>
     </div>

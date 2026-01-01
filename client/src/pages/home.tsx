@@ -440,8 +440,8 @@ export default function Home() {
       <main className="container mx-auto px-4 py-8 pb-20">
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-display font-bold mb-2">Welcome back, {user?.firstName}</h1>
-            <p className="text-muted-foreground">Here's your sustainability overview and quick actions.</p>
+            <h1 className="text-3xl font-display font-bold mb-2">Welcome to the future, {user?.firstName}</h1>
+            <p className="text-muted-foreground">The intelligence layer for sustainable building.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             {quickActions.map((action, i) => (
