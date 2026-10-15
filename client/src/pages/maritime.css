@@ -185,7 +185,7 @@
 .features { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: center;
   margin-top: clamp(120px, 14vw, 200px); background: var(--field); color: var(--field-ink); padding: clamp(80px, 9vw, 140px) var(--margin) clamp(80px, 9vw, 140px) 0; }
 .features figure { margin: 0; position: relative; height: min(78svh, 760px); margin-left: -12%; }
-.features figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.features figure img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 20%; display: block; }
 .features figure figcaption { position: absolute; right: 0; bottom: 0; background: var(--field); padding: 10px 14px; font-size: var(--step-small); color: var(--field-ink); max-width: 30ch; }
 .features h2 { font-size: clamp(2.25rem, 1.3rem + 2.4vw, 3.4rem); max-width: 14ch; }
 .points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; margin-top: 56px; }
@@ -219,7 +219,7 @@
 
 /* Contact: the harbour, then a coupon to tear off. */
 .harbour { --notch: clamp(18px, 2vw, 28px); margin: 0 auto 72px; max-width: 1220px; position: relative; height: clamp(260px, 34vw, 480px); overflow: hidden; }
-.harbour img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; display: block; }
+.harbour img { width: 100%; height: 100%; object-fit: cover; object-position: left top; display: block; }
 .harbour figcaption { position: absolute; right: 0; bottom: 0; background: var(--ground); padding: 14px 20px; font-size: var(--step-body); }
 .contact { padding: clamp(120px, 14vw, 200px) var(--margin) clamp(120px, 12vw, 180px); }
 .coupon { position: relative; display: grid; grid-template-columns: 46fr 54fr; background: var(--accent); color: var(--accent-ink); max-width: 1220px; margin-inline: auto;
@@ -277,6 +277,34 @@
 .nav-short { display: none; }
 
 /* Phone composition */
+@media (max-width: 860px) {
+  .cb { --step-body: 1rem; --step-lead: 1.0625rem; }
+  .notch, .notch-br, .stage, .stage.shutter.open, .platform-stage, .harbour, .features figure, .cb .btn, .grades button, .verdict .letter { clip-path: none !important; }
+  .hero h1 { font-size: clamp(2.1rem, 9.2vw, 2.9rem) !important; line-height: 1.02; }
+  .hero .lead { margin-top: 18px; }
+  .hero .actions { margin-top: 24px; }
+  .stage { margin: 0 var(--margin); min-height: 0; padding: 28px 0 32px; }
+  .stage-inner { position: static; width: auto; padding: 0 18px; }
+  .vessel { padding: 18px 18px 20px; }
+  .vessel h4 { font-size: 22px; }
+  .grade { width: 52px; height: 52px; font-size: 28px; }
+  .how-clause h2 { font-size: 1.9rem !important; }
+  .how-frag { min-height: 0; padding: 28px 16px; }
+  .platform-list h2 { font-size: 1.15rem; }
+  .platform-list button { font-size: 1.15rem !important; padding: 6px 0; }
+  .platform-list ul { gap: 18px; }
+  .platform-stage { margin: 0 var(--margin); padding: 14px; min-height: 0 !important; height: auto; align-self: start; }
+  .features h2, .coupon-left h2 { font-size: 1.9rem; }
+  .features figure { margin: 0 0 8px; width: 100%; height: auto; aspect-ratio: 16 / 10; }
+  .points { margin-top: 28px; gap: 22px; }
+  .bands button { font-size: 1.6rem !important; }
+  .explain .rules { font-size: 1.0625rem; }
+  .grades button { width: 52px; height: 48px; font-size: 1.15rem; }
+  .verdict .letter { width: 64px !important; height: 64px !important; font-size: 2.4rem !important; }
+  .verdict h3 { font-size: 1.5rem; }
+  .harbour { height: auto; aspect-ratio: 16 / 10; }
+  .foot-brand p { font-size: 1.0625rem; }
+}
 @media (max-width: 860px) {
   .stage, .platform-stage, .harbour, .features figure { --notch: 7px; }
   .cb .btn { --notch: 4px; }

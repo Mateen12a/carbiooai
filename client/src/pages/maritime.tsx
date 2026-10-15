@@ -36,10 +36,9 @@ const STAGES = [
 ];
 
 const SCREENS = [
-  { name: "Vessel intelligence", src: "/media/ui/vessel-detail.webp", alt: "Vessel page for a product tanker showing a CII grade of A, monthly CO2 emissions and a performance snapshot", fact: "Monthly CO₂, attained against required CII, and the projected year-end grade for one ship." },
-  { name: "Fleet registry", src: "/media/ui/fleet-registry.webp", alt: "Fleet registry listing vessels with their CII grades and progress against the required line", fact: "Every vessel in one list, graded A to E against its own required line." },
-  { name: "Bunker notes", src: "/media/ui/fuel-records.webp", alt: "Bunker delivery note log with verified receipts and two telemetry variance flags", fact: "Each delivery matched against AIS fuel burn. Matches are verified and variances are flagged." },
-  { name: "DCS reporting", src: "/media/ui/reporting.webp", alt: "DCS compliance centre tracking annual fuel data submissions for each vessel", fact: "Annual IMO fuel data prepared and tracked, ready for flag, class and port state control." },
+  { name: "Captain portal", src: "/media/ui/captain-home.webp", alt: "Captain portal in Carbioo AI showing the vessel's current CII grade of A with buttons to submit a fuel delivery or a position report", fact: "Every captain sees their own vessel's rating, what it means, and the next record to send." },
+  { name: "Vessel intelligence", src: "/media/ui/vessel-detail.webp", alt: "Vessel page showing a CII grade of A, monthly CO2 emissions and a performance snapshot", fact: "Monthly CO₂, attained against required CII, and the projected year-end grade for one ship." },
+  { name: "Confirm a voyage", src: "/media/ui/captain-voyage.webp", alt: "Confirm voyage arrival form with route, dates, distance, cargo and fuel consumed", fact: "Arrival, distance, cargo and fuel in one form. The rating updates as soon as it is confirmed." },
 ];
 
 const POINTS = [
@@ -73,8 +72,8 @@ function useReveal(root: React.RefObject<HTMLElement | null>) {
 function Logo({ link = true, size = 40 }: { link?: boolean; size?: number }) {
   const img = <img src="/brand/carbioo-logo.png" width={Math.round(size * 309 / 90)} height={size} alt="Carbioo AI" />;
   return link
-    ? <a className="logo" href="#top" aria-label="Carbioo AI, back to top">{img}<sup aria-label="registered trademark">®</sup></a>
-    : <span className="logo">{img}<sup aria-label="registered trademark">®</sup></span>;
+    ? <a className="logo" href="#top" aria-label="Carbioo AI, back to top">{img}</a>
+    : <span className="logo">{img}</span>;
 }
 
 function HeroFragment() {
@@ -154,19 +153,10 @@ export default function Maritime() {
   const [band, setBand] = useState(2);
   const [grade, setGrade] = useState<Grade>("C");
   const [open, setOpen] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => { document.title = "Carbioo AI · Maritime carbon intelligence"; const t = setTimeout(() => setOpen(true), 250); return () => clearTimeout(t); }, []);
   useEffect(() => { if (stage === stageShown) return; const t = setTimeout(() => setStageShown(stage), 200); return () => clearTimeout(t); }, [stage, stageShown]);
   useEffect(() => { if (screen === screenShown) return; const t = setTimeout(() => setScreenShown(screen), 260); return () => clearTimeout(t); }, [screen, screenShown]);
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.pause(); return; }
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.2 });
-    io.observe(v);
-    return () => io.disconnect();
-  }, []);
 
   const b = BANDS[band];
   const meaning = (b.cii ? CII_MEANING : LEVEL_MEANING)[grade];
@@ -206,7 +196,6 @@ export default function Maritime() {
             </div>
           </div>
           <div className={`stage shutter ${open ? "open" : ""}`}>
-            <img className="stage-photo drift" src="/media/apapa-port-lagos.jpg" width="1920" height="1440" alt="" />
             <div className="stage-inner">
               <HeroFragment />
               <p className="demo-note">Live product view · demonstration data</p>
@@ -251,16 +240,10 @@ export default function Maritime() {
           </div>
         </section>
 
-        <figure className="reel" data-reveal>
-          <video ref={videoRef} className="rise" muted loop playsInline preload="metadata" poster="/media/platform-loop.jpg" aria-label="Screen recording of Carbioo AI checking bunker notes and running the decarbonisation simulator">
-            <source src="/media/platform-loop.mp4" type="video/mp4" />
-          </video>
-          <figcaption className="rise" style={{ ["--i" as string]: 1 }}>The working software, recorded on our staging environment with demonstration data.</figcaption>
-        </figure>
 
         <section className="features" aria-labelledby="features-title" data-reveal>
           <figure className="notch-br rise">
-            <img src="/media/container-ship-at-sea.jpg" width="1920" height="986" alt="A general cargo ship under way in rough open sea" loading="lazy" />
+            <img src="/media/ui/captain-home.webp" width="1920" height="1200" alt="A vessel's own CII grade in the Carbioo AI captain portal" loading="lazy" />
           </figure>
           <div>
             <h2 id="features-title" className="rise">Built for the whole fleet</h2>
@@ -303,7 +286,7 @@ export default function Maritime() {
 
         <section id="contact" className="contact" aria-labelledby="contact-title" data-reveal>
           <figure className="harbour notch rise">
-            <img src="/media/container-terminal.jpg" width="1920" height="1264" alt="Container ships alongside the cranes of a deep-water container terminal" loading="lazy" />
+            <img src="/media/ui/captain-voyage.webp" width="1920" height="1200" alt="Confirming a voyage arrival in Carbioo AI" loading="lazy" />
           </figure>
           <div className="coupon rise" style={{ ["--i" as string]: 1 }}>
             <div className="coupon-left">
@@ -342,10 +325,6 @@ export default function Maritime() {
         </nav>
         <div className="legal">
           <span>© 2026 Carbioo AI. Carbioo AI® is a UK trademark.</span>
-          <details className="credits">
-            <summary>Photo credits</summary>
-            <p>Pictures: <a href="https://commons.wikimedia.org/wiki/File:Apapa_port.lagos.jpg">“Apapa port.lagos”</a> by Quadrex24, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=56614530">“Container ship Reecon Whale on Black Sea”</a> by HopsonRoad, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=5751536">“Freeport, Malta”</a> by foxypar4, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; all via Wikimedia Commons. Product screens and footage are Carbioo AI’s own, with demonstration data.</p>
-          </details>
         </div>
       </footer>
     </div>
