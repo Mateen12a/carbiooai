@@ -22,7 +22,7 @@ const LEVEL_MEANING: Record<Grade, [string, string]> = {
 };
 
 const BANDS = [
-  { name: "Below 400 GT", cii: false, rules: "Domestic craft below the IMO limits. No annual CII rating, so Carbioo AI measures practical efficiency instead: fuel per passenger-km for ferries, per tonne-km for barges, per engine-hour for tugs.", checks: "Fuel reconciled every month, bunker notes matched where available, AIS spot checks." },
+  { name: "Below 400 GT", cii: false, rules: "Small craft below the IMO limits. No annual CII rating, so Carbioo AI measures practical efficiency instead: fuel per passenger-km for ferries, per tonne-km for barges, per engine-hour for tugs.", checks: "Fuel reconciled every month, bunker notes matched where available, AIS spot checks." },
   { name: "400 to 5,000 GT", cii: false, rules: "Coastal and regional vessels. EEXI and SEEMP Part I apply from 400 GT, but there is no annual CII rating, so progress levels show where each vessel stands.", checks: "Fuel reconciled every month, every bunker delivery matched, engine and fuel particulars verified for EEXI." },
   { name: "5,000 to 20,000 GT", cii: true, rules: "Rated A to E every year under the IMO carbon intensity indicator, with EEXI and SEEMP. The required cut reaches 21.5% below 2019 levels by 2030.", checks: "Every voyage cross-checked with AIS, every delivery matched, CII checked against IMO fuel data each year." },
   { name: "20,000 GT and above", cii: true, rules: "The largest ships, rated A to E every year under IMO CII, with EEXI and SEEMP and the same tightening line to 2030.", checks: "Every voyage cross-checked with AIS, CII checked against IMO fuel data, anomalies reviewed by an analyst every month." },
@@ -36,7 +36,7 @@ const STAGES = [
 ];
 
 const SCREENS = [
-  { name: "Vessel intelligence", src: "/media/ui/vessel-detail.webp", alt: "Vessel page for MT ECO LAGOS showing a CII grade of A, monthly CO2 emissions and a performance snapshot", fact: "Monthly CO₂, attained against required CII, and the projected year-end grade for one ship." },
+  { name: "Vessel intelligence", src: "/media/ui/vessel-detail.webp", alt: "Vessel page for a product tanker showing a CII grade of A, monthly CO2 emissions and a performance snapshot", fact: "Monthly CO₂, attained against required CII, and the projected year-end grade for one ship." },
   { name: "Fleet registry", src: "/media/ui/fleet-registry.webp", alt: "Fleet registry listing vessels with their CII grades and progress against the required line", fact: "Every vessel in one list, graded A to E against its own required line." },
   { name: "Bunker notes", src: "/media/ui/fuel-records.webp", alt: "Bunker delivery note log with verified receipts and two telemetry variance flags", fact: "Each delivery matched against AIS fuel burn. Matches are verified and variances are flagged." },
   { name: "DCS reporting", src: "/media/ui/reporting.webp", alt: "DCS compliance centre tracking annual fuel data submissions for each vessel", fact: "Annual IMO fuel data prepared and tracked, ready for flag, class and port state control." },
@@ -70,16 +70,11 @@ function useReveal(root: React.RefObject<HTMLElement | null>) {
   }, [root]);
 }
 
-function Mark({ link = true }: { link?: boolean }) {
-  const inner = (
-    <>
-      <span className="leaf" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 20h10M12 20v-8M12 12C12 5 17 3 21 3c0 6-3 9-9 9ZM12 15C12 9 7 7 3 7c0 5 3 8 9 8" /></svg>
-      </span>
-      <span>Carbioo <em>AI</em><sup>®</sup></span>
-    </>
-  );
-  return link ? <a className="mark" href="#top" aria-label="Carbioo AI, back to top">{inner}</a> : <span className="mark">{inner}</span>;
+function Logo({ link = true, size = 40 }: { link?: boolean; size?: number }) {
+  const img = <img src="/brand/carbioo-logo.png" width={Math.round(size * 309 / 90)} height={size} alt="Carbioo AI" />;
+  return link
+    ? <a className="logo" href="#top" aria-label="Carbioo AI, back to top">{img}<sup aria-label="registered trademark">®</sup></a>
+    : <span className="logo">{img}<sup aria-label="registered trademark">®</sup></span>;
 }
 
 function HeroFragment() {
@@ -93,8 +88,8 @@ function HeroFragment() {
     <div className="ui vessel" data-ui>
       <div className="row">
         <div>
-          <h4>MT ECO LAGOS</h4>
-          <div className="meta">IMO 9921044 · Product tanker · Flag NG</div>
+          <h4>MT ECO HORIZON</h4>
+          <div className="meta">IMO 9921044 · Product tanker · 29,000 DWT</div>
         </div>
         <div className="grade" style={{ background: GRADE_COLOUR[grade] }} aria-label={`CII grade ${grade}`}>{grade}</div>
       </div>
@@ -120,7 +115,7 @@ function HeroFragment() {
 function StageFragment({ i }: { i: number }) {
   if (i === 0) return (
     <div className="ui form-ui" data-ui>
-      <label>Voyage<div className="in">Apapa to Onne · 142 nm</div></label>
+      <label>Voyage<div className="in">Rotterdam to Hamburg · 284 nm</div></label>
       <label>Fuel bunkered<div className="in">480.5 MT VLSFO</div></label>
       <label>Fuel on board at arrival<div className="in">312.4 MT</div></label>
       <span className="chip" style={{ background: "#e7f7ee", color: "#17803f" }}>Saved offline · syncs when back online</span>
@@ -128,14 +123,14 @@ function StageFragment({ i }: { i: number }) {
   );
   if (i === 1) return (
     <div className="ui bdn" data-ui>
-      {[["BDN-0481 · 480.5 MT", "VLSFO", "Matched"], ["BDN-0482 · 220.0 MT", "MGO", "Matched"], ["BDN-0483 · 480.5 MT", "VLSFO", "Variance"], ["Voyage · 142 nm", "AIS", "Checked"]].map(([a, b, c]) => (
+      {[["BDN-0481 · 480.5 MT", "VLSFO", "Matched"], ["BDN-0482 · 220.0 MT", "MGO", "Matched"], ["BDN-0483 · 480.5 MT", "VLSFO", "Variance"], ["Voyage · 284 nm", "AIS", "Checked"]].map(([a, b, c]) => (
         <div className="r" key={a}><span className="v">{a}</span><span className="k">{b}</span><span className={c === "Variance" ? "warnc" : "ok"}>{c}</span></div>
       ))}
     </div>
   );
   if (i === 2) return (
     <div className="ui vessel" data-ui>
-      <div className="row"><div><h4>MV BIGHT OF BENIN</h4><div className="meta">Bulk carrier · 32,500 DWT</div></div><div className="grade" style={{ background: "var(--b)" }}>B</div></div>
+      <div className="row"><div><h4>MV NORDIC BAY</h4><div className="meta">Bulk carrier · 32,500 DWT</div></div><div className="grade" style={{ background: "var(--b)" }}>B</div></div>
       <div className="band">{GRADES.map((g) => <span key={g} className={g === "B" ? "on" : ""} style={{ background: GRADE_COLOUR[g] }}>{g}</span>)}</div>
       <div className="row" style={{ marginTop: 16 }}><span className="k">Attained 6.133 · Required 6.595</span><span className="ok">7.0% below</span></div>
     </div>
@@ -143,7 +138,7 @@ function StageFragment({ i }: { i: number }) {
   return (
     <div className="ui alert" data-ui>
       <b>Early warning</b>
-      <div>MV LAGOS PRIDE is trending 2.0% above its required line.</div>
+      <div>MV ATLANTIC PRIDE is trending 2.0% above its required line.</div>
       <div className="row" style={{ marginTop: 14 }}><span className="k">Projected year end</span><span className="warnc">Grade D</span></div>
     </div>
   );
@@ -188,7 +183,7 @@ export default function Maritime() {
   return (
     <div className="cb" ref={root} id="top">
       <header className="nav">
-        <Mark />
+        <Logo />
         <nav aria-label="Main">
           <ul>
             <li><a href="#how">How it works</a></li>
@@ -204,7 +199,7 @@ export default function Maritime() {
         <section className="hero" aria-labelledby="hero-title" data-reveal>
           <div className="hero-copy">
             <h1 id="hero-title" className="rise">Every ship, rated and verified.</h1>
-            <p className="lead rise" style={{ ["--i" as string]: 1 }}>Carbioo AI turns fuel logs, bunker notes and voyage records into an IMO carbon rating for every vessel in Nigerian waters, and warns operators before a rating fails.</p>
+            <p className="lead rise" style={{ ["--i" as string]: 1 }}>Carbioo AI turns fuel logs, bunker notes and voyage records into a verified IMO carbon rating for every vessel in your fleet, and warns you before a rating fails.</p>
             <div className="actions rise" style={{ ["--i" as string]: 2 }}>
               <a className="btn notch" href="#contact">Book a walkthrough <span className="arrow" aria-hidden="true">→</span></a>
               <a className="quiet" href="#how">See how it works</a>
@@ -234,7 +229,7 @@ export default function Maritime() {
               style={{ ["--p" as string]: `${(stage / 3) * 100}%` }} aria-valuetext={STAGES[stage].name} /></div>
             <div className="stops">
               {STAGES.map((s, i) => (
-                <button key={s.name} type="button" className={`${i === stage ? "cur" : ""} ${i >= 2 ? "r" : ""}`} onClick={() => setStage(i)} aria-current={i === stage}>{s.name}</button>
+                <button key={s.name} type="button" className={i === stage ? "cur" : ""} onClick={() => setStage(i)} aria-current={i === stage}>{s.name}</button>
               ))}
             </div>
           </div>
@@ -265,7 +260,7 @@ export default function Maritime() {
 
         <section className="features" aria-labelledby="features-title" data-reveal>
           <figure className="notch-br rise">
-            <img src="/media/lagos-lagoon.jpg" width="1920" height="1439" alt="A wooden boat crossing the Lagos Lagoon, seen from above" loading="lazy" />
+            <img src="/media/container-ship-at-sea.jpg" width="1920" height="986" alt="A general cargo ship under way in rough open sea" loading="lazy" />
           </figure>
           <div>
             <h2 id="features-title" className="rise">Built for the whole fleet</h2>
@@ -308,13 +303,12 @@ export default function Maritime() {
 
         <section id="contact" className="contact" aria-labelledby="contact-title" data-reveal>
           <figure className="harbour notch rise">
-            <img src="/media/lekki-ikoyi-bridge.jpg" width="1920" height="2560" alt="Ferries moored on the Lagos Lagoon beside the Lekki to Ikoyi link bridge in the afternoon haze" loading="lazy" />
-            <figcaption>Lagos, where our first vessels sail.</figcaption>
+            <img src="/media/container-terminal.jpg" width="1920" height="1264" alt="Container ships alongside the cranes of a deep-water container terminal" loading="lazy" />
           </figure>
           <div className="coupon rise" style={{ ["--i" as string]: 1 }}>
             <div className="coupon-left">
               <h2 id="contact-title">Bring your fleet aboard</h2>
-              <p>Tell us about your vessels and we will walk you through the platform with your own fleet in mind. Or write to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+              <p>Tell us about your fleet, your port or your agency, and we will walk you through the platform with your vessels in mind. Or write to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
             </div>
             <form onSubmit={submit}>
               <label className="sr" htmlFor="f-name">Your name</label>
@@ -343,13 +337,13 @@ export default function Maritime() {
         <div className="foot-grid">
           <div><span className="lab">Product</span><a href="#how">How it works</a><a href="#platform">Platform</a><a href="#ratings">Ratings</a></div>
           <div><span className="lab">Company</span><a href="#contact">Contact</a><a href="https://www.linkedin.com/company/carbiooai/" rel="noopener">LinkedIn</a></div>
-          <div><Mark link={false} /><p style={{ marginTop: 10 }}>Maritime carbon intelligence. Built for Nigeria, designed for global operations.</p><a href={`mailto:${EMAIL}`}>{EMAIL}</a></div>
+          <div><Logo link={false} size={34} /><p style={{ marginTop: 14 }}>Maritime carbon intelligence for fleets, ports and regulators.</p><a href={`mailto:${EMAIL}`}>{EMAIL}</a></div>
         </div>
         <div className="legal">
           <span>© 2026 Carbioo AI. Carbioo AI® is a UK trademark.</span>
           <a href="#top">Back to top ↑</a>
         </div>
-        <p className="credits">Pictures: <a href="https://commons.wikimedia.org/wiki/File:Apapa_port.lagos.jpg">“Apapa port.lagos”</a> by Quadrex24; <a href="https://commons.wikimedia.org/w/index.php?curid=80068089">“Boat with humans on Lagos Lagoon”</a> by Solasly; <a href="https://commons.wikimedia.org/w/index.php?curid=87529355">“Ikoyi Bridge, Lagos, with ferries”</a> by Kenechi Adinnu. All <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons. Product screens and footage are Carbioo AI’s own, with demonstration data.</p>
+        <p className="credits">Pictures: <a href="https://commons.wikimedia.org/wiki/File:Apapa_port.lagos.jpg">“Apapa port.lagos”</a> by Quadrex24, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=56614530">“Container ship Reecon Whale on Black Sea”</a> by HopsonRoad, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=5751536">“Freeport, Malta”</a> by foxypar4, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; all via Wikimedia Commons. Product screens and footage are Carbioo AI’s own, with demonstration data.</p>
       </footer>
     </div>
   );
