@@ -1,0 +1,74 @@
+﻿[
+    {
+        "file":  "client/public/media/apapa-port-lagos.jpg",
+        "media":  "image",
+        "ref":  "commons:63290508",
+        "title":  "Apapa port.lagos",
+        "creator":  "Quadrex24",
+        "creatorUrl":  null,
+        "date":  "2017-05-14",
+        "license":  "CC BY-SA 4.0",
+        "licenseCode":  "by-sa",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0",
+        "creditRequired":  true,
+        "page":  "https://commons.wikimedia.org/wiki/File:Apapa_port.lagos.jpg",
+        "via":  "Wikimedia Commons",
+        "image":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Apapa_port.lagos.jpg/1920px-Apapa_port.lagos.jpg",
+        "width":  1920,
+        "height":  1440,
+        "bytes":  390411,
+        "credit":  "\"Apapa port.lagos\" by Quadrex24, CC BY-SA 4.0, via Wikimedia Commons",
+        "notes":  [
+                      "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+                  ],
+        "saved":  "2026-10-15T03:07:56.609Z"
+    },
+    {
+        "file":  "client/public/media/lagos-lagoon.jpg",
+        "media":  "image",
+        "ref":  "openverse:cb77921f-894a-4d9b-8342-b12120d7b8c4",
+        "title":  "Boat with humans on Lagos Lagoon",
+        "creator":  "Solasly",
+        "creatorUrl":  "https://commons.wikimedia.org/wiki/User:Solasly",
+        "date":  null,
+        "license":  "CC BY-SA 4.0",
+        "licenseCode":  "by-sa",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0/",
+        "creditRequired":  true,
+        "page":  "https://commons.wikimedia.org/w/index.php?curid=80068089",
+        "via":  "Wikimedia Commons",
+        "image":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Boat_with_humans_on_Lagos_Lagoon.jpg/1920px-Boat_with_humans_on_Lagos_Lagoon.jpg",
+        "width":  1920,
+        "height":  1439,
+        "bytes":  789652,
+        "credit":  "\"Boat with humans on Lagos Lagoon\" by Solasly, CC BY-SA 4.0, via Wikimedia Commons",
+        "notes":  [
+                      "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+                  ],
+        "saved":  "2026-10-15T03:09:50.250Z"
+    },
+    {
+        "file":  "client/public/media/lekki-ikoyi-bridge.jpg",
+        "media":  "image",
+        "ref":  "openverse:0080c350-f0fe-4208-aa93-c6e40441c1d8",
+        "title":  "IKOYI BRIDGE LAGOS NIGERIA SHOWING THE CALM OCEAN UNDER IT WITH FERRIES FOR SEA TRANSPORT, IN AN EARLY AFTERNOON",
+        "creator":  "KENECHI ADINNU",
+        "creatorUrl":  "https://commons.wikimedia.org/w/index.php?title=User:KENNYADINNU\u0026action=edit\u0026redlink=1",
+        "date":  null,
+        "license":  "CC BY-SA 4.0",
+        "licenseCode":  "by-sa",
+        "licenseUrl":  "https://creativecommons.org/licenses/by-sa/4.0/",
+        "creditRequired":  true,
+        "page":  "https://commons.wikimedia.org/w/index.php?curid=87529355",
+        "via":  "Wikimedia Commons",
+        "image":  "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/IKOYI_BRIDGE_LAGOS_NIGERIA_SHOWING_THE_CALM_OCEAN_UNDER_IT_WITH_FERRIES_FOR_SEA_TRANSPORT%2C_IN_AN_EARLY_AFTERNOON.jpg/1920px-IKOYI_BRIDGE_LAGOS_NIGERIA_SHOWING_THE_CALM_OCEAN_UNDER_IT_WITH_FERRIES_FOR_SEA_TRANSPORT%2C_IN_AN_EARLY_AFTERNOON.jpg",
+        "width":  1920,
+        "height":  2560,
+        "bytes":  724561,
+        "credit":  "\"IKOYI BRIDGE LAGOS NIGERIA SHOWING THE CALM OCEAN UNDER IT WITH FERRIES FOR SEA TRANSPORTâ€¦\" by KENECHI ADINNU, CC BY-SA 4.0, via Wikimedia Commons",
+        "notes":  [
+                      "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+                  ],
+        "saved":  "2026-10-15T03:09:53.914Z"
+    }
+]

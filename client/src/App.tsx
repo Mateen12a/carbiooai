@@ -1,65 +1,25 @@
-import { useEffect } from "react";
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { AuthProvider } from "@/lib/auth-context";
-import Landing from "@/pages/landing";
-import About from "@/pages/about";
-import InvestorPage from "@/pages/investor";
-import Pricing from "@/pages/pricing";
-import Contact from "@/pages/contact";
-import CaseStudies from "@/pages/case-studies";
-import ApiDocs from "@/pages/api-docs";
-import Verify from "@/pages/verify";
-import NotFound from "@/pages/not-found";
+import { Switch, Route, Redirect } from "wouter";
+import Maritime from "@/pages/maritime";
 
-const API_BASE = import.meta.env.VITE_API_URL || "/api";
-
-function useKeepBackendAwake() {
-  useEffect(() => {
-    const pingBackend = () => {
-      fetch(`${API_BASE}/health`, { method: "GET" }).catch(() => {});
-    };
-    
-    pingBackend();
-    
-    const interval = setInterval(pingBackend, 5 * 60 * 1000);
-    
-    return () => clearInterval(interval);
-  }, []);
-}
-
+// Carbioo AI is now maritime carbon intelligence. The earlier construction-era pages
+// (about, pricing, case studies, investor, API, waitlist verification) are retired and
+// send visitors to the new home page.
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Landing} />
-      <Route path="/about" component={About} />
-      <Route path="/investor" component={InvestorPage} />
-      <Route path="/pricing" component={Pricing} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/case-studies" component={CaseStudies} />
-      <Route path="/api" component={ApiDocs} />
-      <Route path="/verify" component={Verify} />
-      <Route component={NotFound} />
+      <Route path="/" component={Maritime} />
+      <Route path="/about"><Redirect to="/" /></Route>
+      <Route path="/investor"><Redirect to="/" /></Route>
+      <Route path="/pricing"><Redirect to="/#pricing" /></Route>
+      <Route path="/contact"><Redirect to="/#contact" /></Route>
+      <Route path="/case-studies"><Redirect to="/" /></Route>
+      <Route path="/api"><Redirect to="/" /></Route>
+      <Route path="/verify"><Redirect to="/" /></Route>
+      <Route><Redirect to="/" /></Route>
     </Switch>
   );
 }
 
-function App() {
-  useKeepBackendAwake();
-  
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </AuthProvider>
-    </QueryClientProvider>
-  );
+export default function App() {
+  return <Router />;
 }
-
-export default App;
