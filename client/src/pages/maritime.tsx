@@ -329,21 +329,24 @@ export default function Maritime() {
       </main>
 
       <footer className="foot" data-reveal>
-        <div className="blocks" aria-label="Carbioo">
-          {"CARBIOO".split("").map((ch, i) => (
-            <span key={i} style={{ ["--i" as string]: i, background: GRADE_COLOUR[GRADES[i % 5]], height: `${[100, 82, 92, 70, 88, 76, 96][i]}%` }} aria-hidden="true">{ch}</span>
-          ))}
+        <div className="foot-top">
+          <div className="foot-brand rise">
+            <Logo link={false} size={44} />
+            <p>Maritime carbon intelligence for fleets, ports and regulators.</p>
+          </div>
+          <a className="btn notch rise" style={{ ["--i" as string]: 1 }} href="#contact">Book a walkthrough <span className="arrow" aria-hidden="true">→</span></a>
         </div>
-        <div className="foot-grid">
-          <div><span className="lab">Product</span><a href="#how">How it works</a><a href="#platform">Platform</a><a href="#ratings">Ratings</a></div>
-          <div><span className="lab">Company</span><a href="#contact">Contact</a><a href="https://www.linkedin.com/company/carbiooai/" rel="noopener">LinkedIn</a></div>
-          <div><Logo link={false} size={34} /><p style={{ marginTop: 14 }}>Maritime carbon intelligence for fleets, ports and regulators.</p><a href={`mailto:${EMAIL}`}>{EMAIL}</a></div>
-        </div>
+        <nav className="foot-links rise" style={{ ["--i" as string]: 2 }} aria-label="Footer">
+          <a href="#how">How it works</a><a href="#platform">Platform</a><a href="#ratings">Ratings</a><a href="#contact">Contact</a>
+          <a href="https://www.linkedin.com/company/carbiooai/" rel="noopener">LinkedIn</a><a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </nav>
         <div className="legal">
           <span>© 2026 Carbioo AI. Carbioo AI® is a UK trademark.</span>
-          <a href="#top">Back to top ↑</a>
+          <details className="credits">
+            <summary>Photo credits</summary>
+            <p>Pictures: <a href="https://commons.wikimedia.org/wiki/File:Apapa_port.lagos.jpg">“Apapa port.lagos”</a> by Quadrex24, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=56614530">“Container ship Reecon Whale on Black Sea”</a> by HopsonRoad, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=5751536">“Freeport, Malta”</a> by foxypar4, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; all via Wikimedia Commons. Product screens and footage are Carbioo AI’s own, with demonstration data.</p>
+          </details>
         </div>
-        <p className="credits">Pictures: <a href="https://commons.wikimedia.org/wiki/File:Apapa_port.lagos.jpg">“Apapa port.lagos”</a> by Quadrex24, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=56614530">“Container ship Reecon Whale on Black Sea”</a> by HopsonRoad, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=5751536">“Freeport, Malta”</a> by foxypar4, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; all via Wikimedia Commons. Product screens and footage are Carbioo AI’s own, with demonstration data.</p>
       </footer>
     </div>
   );
