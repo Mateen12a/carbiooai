@@ -29,6 +29,14 @@
   overflow-x: clip;
 }
 .cb *, .cb *::before, .cb *::after { box-sizing: border-box; }
+.cb section, .cb [id] { scroll-margin-top: 24px; }
+.cb h1, .cb h2, .cb h3 { text-wrap: balance; }
+.cb p { text-wrap: pretty; overflow-wrap: break-word; }
+.cb a, .cb button, .cb input, .cb select { touch-action: manipulation; -webkit-tap-highlight-color: rgba(68, 160, 77, .18); }
+.cb .ui .v, .cb .ui .k { font-variant-numeric: tabular-nums; }
+.cb .row > * { min-width: 0; }
+.cb .skip { position: absolute; left: var(--margin); top: -60px; z-index: 20; background: var(--ink); color: var(--ground); padding: 12px 18px; font-weight: 600; text-decoration: none; transition: top .2s ease; }
+.cb .skip:focus { top: 12px; }
 .cb h1, .cb h2, .cb h3 {
   font-family: var(--display); font-weight: 600; text-transform: none;
   letter-spacing: -0.02em; line-height: 1.0; margin: 0;
@@ -73,7 +81,7 @@
 .cb .btn.dark:hover { background: #17323f; }
 
 /* Nav */
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px var(--margin);
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: max(26px, env(safe-area-inset-top)) max(var(--margin), env(safe-area-inset-right)) 26px max(var(--margin), env(safe-area-inset-left));
   position: relative; z-index: 5; }
 .logo { display: inline-flex; align-items: flex-start; gap: 2px; text-decoration: none; }
 .logo img { display: block; height: 40px; width: auto; }
@@ -108,7 +116,7 @@
 .ui .k { color: #4f6660; font-size: 13px; }
 .ui .v { font-weight: 600; font-variant-numeric: tabular-nums; }
 .vessel { padding: 26px 28px 30px; }
-.vessel h4 { margin: 0; font: 600 26px/1 var(--display); letter-spacing: .01em; color: #0f2129; }
+.vessel .vname { margin: 0; font: 600 26px/1 var(--display); letter-spacing: .01em; color: #0f2129; }
 .vessel .meta { margin-top: 6px; color: #4f6660; font-size: 13.5px; }
 .grade { display: grid; place-items: center; width: 64px; height: 64px; font: 600 34px/1 var(--display); color: #04130b; flex: none; transition: background-color .5s ease; }
 .band { display: flex; gap: 3px; margin-top: 22px; }
@@ -173,6 +181,7 @@
 .platform-fact { margin-top: 28px; max-width: 36ch; color: var(--ink); min-height: 4.8em; transition: opacity .25s ease; }
 .platform-stage { --notch: clamp(12px, 1.4vw, 18px); position: relative; background: var(--accent); padding: clamp(24px, 3vw, 48px);
   overflow: hidden; margin-right: var(--margin); }
+.platform-stage picture { display: block; }
 .platform-stage img { display: block; width: 100%; max-width: 100%; height: auto; transition: opacity .3s ease; }
 .platform-stage .fading { opacity: 0; }
 
@@ -183,9 +192,9 @@
 
 /* Features: shaped photograph cropped by the left edge, points beside it. */
 .features { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: center;
-  margin-top: clamp(120px, 14vw, 200px); background: var(--field); color: var(--field-ink); padding: clamp(80px, 9vw, 140px) var(--margin) clamp(80px, 9vw, 140px) 0; }
-.features figure { margin: 0; position: relative; height: min(78svh, 760px); margin-left: -12%; }
-.features figure img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 20%; display: block; }
+  margin-top: clamp(120px, 14vw, 200px); background: var(--field); color: var(--field-ink); padding: clamp(80px, 9vw, 140px) var(--margin); }
+.features figure { margin: 0; position: relative; height: min(64svh, 600px); background: #f4f6f1; padding: clamp(16px, 2vw, 28px); }
+.features figure img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 .features figure figcaption { position: absolute; right: 0; bottom: 0; background: var(--field); padding: 10px 14px; font-size: var(--step-small); color: var(--field-ink); max-width: 30ch; }
 .features h2 { font-size: clamp(2.25rem, 1.3rem + 2.4vw, 3.4rem); max-width: 14ch; }
 .points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; margin-top: 56px; }
@@ -218,8 +227,8 @@
 .explain .btn { margin-top: 30px; }
 
 /* Contact: the harbour, then a coupon to tear off. */
-.harbour { --notch: clamp(18px, 2vw, 28px); margin: 0 auto 72px; max-width: 1220px; position: relative; height: clamp(260px, 34vw, 480px); overflow: hidden; }
-.harbour img { width: 100%; height: 100%; object-fit: cover; object-position: left top; display: block; }
+.harbour { --notch: clamp(12px, 1.4vw, 18px); margin: 0 auto 72px; max-width: 1220px; position: relative; overflow: hidden; background: #fbfcfb; }
+.harbour img { width: 100%; height: auto; display: block; }
 .harbour figcaption { position: absolute; right: 0; bottom: 0; background: var(--ground); padding: 14px 20px; font-size: var(--step-body); }
 .contact { padding: clamp(120px, 14vw, 200px) var(--margin) clamp(120px, 12vw, 180px); }
 .coupon { position: relative; display: grid; grid-template-columns: 46fr 54fr; background: var(--accent); color: var(--accent-ink); max-width: 1220px; margin-inline: auto;
@@ -229,14 +238,16 @@
 .coupon-left h2 { font-size: clamp(2rem, 1.2rem + 2.4vw, 3.25rem); max-width: 11ch; }
 .coupon-left p { max-width: 34ch; font-size: var(--step-body); }
 .coupon-left a { font-weight: 600; }
-.coupon form { padding: 48px; display: grid; gap: 10px; border-left: 5px dotted var(--ground); }
-.coupon input, .coupon select { height: 54px; border: 0; padding: 0 16px; font: 500 1rem var(--text); background: #8be3b3; color: #04130b; width: 100%; }
+.coupon form label { font-size: var(--step-small); font-weight: 600; color: #04130b; margin-top: 6px; }
+.coupon form { padding: 48px; display: grid; gap: 6px; border-left: 5px dotted var(--ground); }
+.coupon select { color: #04130b; background-color: #8be3b3; }
+.coupon input, .coupon select { height: 50px; border: 0; padding: 0 16px; font: 500 1rem var(--text); background: #8be3b3; color: #04130b; width: 100%; }
 .coupon input::placeholder { color: #1f5a3b; }
-.coupon form .btn { justify-content: center; height: 56px; margin-top: 6px; }
+.coupon form .btn { justify-content: center; height: 56px; margin-top: 16px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Footer: the logo closes the page, plain links, credits on request. */
-.foot { padding: clamp(80px, 9vw, 140px) var(--margin) 36px; }
+.foot { padding: clamp(80px, 9vw, 140px) var(--margin) max(36px, env(safe-area-inset-bottom)); }
 .foot-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px; padding-bottom: 40px; }
 .foot-brand p { margin-top: 16px; max-width: 34ch; font-size: var(--step-lead); line-height: 1.35; }
 .foot .logo img { height: 44px; }
@@ -266,6 +277,7 @@
 @keyframes drift { from { transform: scale(1.03) } to { transform: scale(1.08) } }
 
 @media (prefers-reduced-motion: reduce) {
+  .skip { transition: none; }
   .cb *, .cb *::before, .cb *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
   .js .rise { opacity: 1; transform: none; }
   .shutter { clip-path: none; }
@@ -283,10 +295,10 @@
   .hero h1 { font-size: clamp(2.1rem, 9.2vw, 2.9rem) !important; line-height: 1.02; }
   .hero .lead { margin-top: 18px; }
   .hero .actions { margin-top: 24px; }
-  .stage { margin: 0 var(--margin); min-height: 0; padding: 28px 0 32px; }
+  .stage { margin: 0 var(--margin); min-height: 0 !important; padding: 28px 0 24px; }
   .stage-inner { position: static; width: auto; padding: 0 18px; }
   .vessel { padding: 18px 18px 20px; }
-  .vessel h4 { font-size: 22px; }
+  .vessel .vname { font-size: 22px; }
   .grade { width: 52px; height: 52px; font-size: 28px; }
   .how-clause h2 { font-size: 1.9rem !important; }
   .how-frag { min-height: 0; padding: 28px 16px; }
@@ -302,8 +314,12 @@
   .grades button { width: 52px; height: 48px; font-size: 1.15rem; }
   .verdict .letter { width: 64px !important; height: 64px !important; font-size: 2.4rem !important; }
   .verdict h3 { font-size: 1.5rem; }
-  .harbour { height: auto; aspect-ratio: 16 / 10; }
+  .harbour { height: auto; }
   .foot-brand p { font-size: 1.0625rem; }
+  .features figure, .harbour { display: none; }
+  .features { grid-template-columns: 1fr; }
+  .platform-stage { background: var(--accent); padding: 10px; }
+  .platform-stage img { width: 100%; height: auto; background: #fff; }
 }
 @media (max-width: 860px) {
   .stage, .platform-stage, .harbour, .features figure { --notch: 7px; }

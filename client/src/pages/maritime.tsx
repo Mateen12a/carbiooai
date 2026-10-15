@@ -36,9 +36,9 @@ const STAGES = [
 ];
 
 const SCREENS = [
-  { name: "Captain portal", src: "/media/ui/captain-home.webp", alt: "Captain portal in Carbioo AI showing the vessel's current CII grade of A with buttons to submit a fuel delivery or a position report", fact: "Every captain sees their own vessel's rating, what it means, and the next record to send." },
-  { name: "Vessel intelligence", src: "/media/ui/vessel-detail.webp", alt: "Vessel page showing a CII grade of A, monthly CO2 emissions and a performance snapshot", fact: "Monthly CO₂, attained against required CII, and the projected year-end grade for one ship." },
-  { name: "Confirm a voyage", src: "/media/ui/captain-voyage.webp", alt: "Confirm voyage arrival form with route, dates, distance, cargo and fuel consumed", fact: "Arrival, distance, cargo and fuel in one form. The rating updates as soon as it is confirmed." },
+  { name: "Captain portal", src: "/media/ui/captain-home.webp", m: "/media/ui/captain-rating.webp", alt: "Captain portal in Carbioo AI showing the vessel's current CII grade of A with buttons to submit a fuel delivery or a position report", fact: "Every captain sees their own vessel's rating, what it means, and the next record to send." },
+  { name: "Vessel intelligence", src: "/media/ui/vessel-detail.webp", m: "/media/ui/vessel-performance.webp", alt: "Vessel page showing a CII grade of A, monthly CO2 emissions and a performance snapshot", fact: "Monthly CO₂, attained against required CII, and the projected year-end grade for one ship." },
+  { name: "Confirm a voyage", src: "/media/ui/captain-voyage.webp", m: "/media/ui/captain-voyage-m.webp", alt: "Confirm voyage arrival form with route, dates, distance, cargo and fuel consumed", fact: "Arrival, distance, cargo and fuel in one form. The rating updates as soon as it is confirmed." },
 ];
 
 const POINTS = [
@@ -70,7 +70,7 @@ function useReveal(root: React.RefObject<HTMLElement | null>) {
 }
 
 function Logo({ link = true, size = 40 }: { link?: boolean; size?: number }) {
-  const img = <img src="/brand/carbioo-logo.png" width={Math.round(size * 309 / 90)} height={size} alt="Carbioo AI" />;
+  const img = <img src="/brand/carbioo-logo.png" width={Math.round(size * 309 / 90)} height={size} alt="Carbioo AI" translate="no" fetchPriority={link ? "high" : "auto"} />;
   return link
     ? <a className="logo" href="#top" aria-label="Carbioo AI, back to top">{img}</a>
     : <span className="logo">{img}</span>;
@@ -87,10 +87,10 @@ function HeroFragment() {
     <div className="ui vessel" data-ui>
       <div className="row">
         <div>
-          <h4>MT ECO HORIZON</h4>
+          <p className="vname" translate="no">MT ECO HORIZON</p>
           <div className="meta">IMO 9921044 · Product tanker · 29,000 DWT</div>
         </div>
-        <div className="grade" style={{ background: GRADE_COLOUR[grade] }} aria-label={`CII grade ${grade}`}>{grade}</div>
+        <div className="grade" role="img" style={{ background: GRADE_COLOUR[grade] }} aria-label={`CII grade ${grade}`}>{grade}</div>
       </div>
       <div className="band" aria-hidden="true">
         {GRADES.map((g) => <span key={g} className={g === grade ? "on" : ""} style={{ background: GRADE_COLOUR[g] }}>{g}</span>)}
@@ -129,7 +129,7 @@ function StageFragment({ i }: { i: number }) {
   );
   if (i === 2) return (
     <div className="ui vessel" data-ui>
-      <div className="row"><div><h4>MV NORDIC BAY</h4><div className="meta">Bulk carrier · 32,500 DWT</div></div><div className="grade" style={{ background: "var(--b)" }}>B</div></div>
+      <div className="row"><div><p className="vname" translate="no">MV NORDIC BAY</p><div className="meta">Bulk carrier · 32,500 DWT</div></div><div className="grade" style={{ background: "var(--b)" }}>B</div></div>
       <div className="band">{GRADES.map((g) => <span key={g} className={g === "B" ? "on" : ""} style={{ background: GRADE_COLOUR[g] }}>{g}</span>)}</div>
       <div className="row" style={{ marginTop: 16 }}><span className="k">Attained 6.133 · Required 6.595</span><span className="ok">7.0% below</span></div>
     </div>
@@ -166,12 +166,13 @@ export default function Maritime() {
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const body = `Name: ${f.get("name")}\nCompany: ${f.get("company")}\nEmail: ${f.get("email")}\nFleet: ${f.get("fleet")}\n\nWe would like a walkthrough of Carbioo AI for our fleet.`;
+    const body = `Name: ${f.get("name")}\nCompany: ${f.get("company")}\nEmail: ${f.get("email")}\nFleet: ${f.get("fleet")}\n\nPlease arrange a walkthrough of Carbioo AI for this fleet.`;
     window.location.href = mailto(`Demo request from ${f.get("company") || f.get("name")}`, body);
   }
 
   return (
     <div className="cb" ref={root} id="top">
+      <a className="skip" href="#main">Skip to content</a>
       <header className="nav">
         <Logo />
         <nav aria-label="Main">
@@ -182,17 +183,17 @@ export default function Maritime() {
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-        <a className="btn notch" href="#contact"><span className="nav-long">Book a walkthrough</span><span className="nav-short">Contact</span></a>
+        <a className="btn notch" href="#contact"><span className="nav-long">Book a Walkthrough</span><span className="nav-short">Contact</span></a>
       </header>
 
-      <main>
+      <main id="main">
         <section className="hero" aria-labelledby="hero-title" data-reveal>
           <div className="hero-copy">
             <h1 id="hero-title" className="rise">Every ship, rated and verified.</h1>
             <p className="lead rise" style={{ ["--i" as string]: 1 }}>Carbioo AI turns fuel logs, bunker notes and voyage records into a verified IMO carbon rating for every vessel in your fleet, and warns you before a rating fails.</p>
             <div className="actions rise" style={{ ["--i" as string]: 2 }}>
-              <a className="btn notch" href="#contact">Book a walkthrough <span className="arrow" aria-hidden="true">→</span></a>
-              <a className="quiet" href="#how">See how it works</a>
+              <a className="btn notch" href="#contact">Book a Walkthrough <span className="arrow" aria-hidden="true">→</span></a>
+              <a className="quiet" href="#how">See How It Works</a>
             </div>
           </div>
           <div className={`stage shutter ${open ? "open" : ""}`}>
@@ -236,14 +237,14 @@ export default function Maritime() {
             <p className={`platform-fact rise ${fadingScreen ? "fading" : ""}`} style={{ ["--i" as string]: 2 }}>{SCREENS[screenShown].fact}</p>
           </div>
           <div className="platform-stage notch rise" style={{ ["--i" as string]: 2 }}>
-            <img className={fadingScreen ? "fading" : ""} src={SCREENS[screenShown].src} alt={SCREENS[screenShown].alt} width="1440" height="900" loading="lazy" />
+            <picture><source media="(max-width: 860px)" srcSet={SCREENS[screenShown].m} /><img className={fadingScreen ? "fading" : ""} src={SCREENS[screenShown].src} alt={SCREENS[screenShown].alt} width="1440" height="900" loading="lazy" /></picture>
           </div>
         </section>
 
 
         <section className="features" aria-labelledby="features-title" data-reveal>
           <figure className="notch-br rise">
-            <img src="/media/ui/captain-home.webp" width="1920" height="1200" alt="A vessel's own CII grade in the Carbioo AI captain portal" loading="lazy" />
+            <img src="/media/ui/captain-rating.webp" width="1560" height="920" alt="Captain portal close-up: the vessel's current CII rating of A, with buttons to submit a fuel delivery or a position report" loading="lazy" />
           </figure>
           <div>
             <h2 id="features-title" className="rise">Built for the whole fleet</h2>
@@ -279,33 +280,33 @@ export default function Maritime() {
                 <p>{meaning[1]}</p>
               </div>
             </div>
-            <p className="checks"><b>How we verify it:</b> {b.checks}</p>
-            <a className="btn notch" href={mailto(`Carbioo AI for ${b.name} vessels`, `We operate vessels in the ${b.name} range and would like a walkthrough of Carbioo AI.`)}>Talk to us about your fleet <span className="arrow" aria-hidden="true">→</span></a>
+            <p className="checks"><b>How it is verified:</b> {b.checks}</p>
+            <a className="btn notch" href={mailto(`Carbioo AI for ${b.name} vessels`, `We operate vessels in the ${b.name} range and would like a walkthrough of Carbioo AI.`)}>Talk to Us About Your Fleet <span className="arrow" aria-hidden="true">→</span></a>
           </div>
         </section>
 
         <section id="contact" className="contact" aria-labelledby="contact-title" data-reveal>
           <figure className="harbour notch rise">
-            <img src="/media/ui/captain-voyage.webp" width="1920" height="1200" alt="Confirming a voyage arrival in Carbioo AI" loading="lazy" />
+            <img src="/media/ui/vessel-performance.webp" width="2170" height="790" alt="A vessel's monthly CO2 emissions chart, 15% below its required carbon intensity line" loading="lazy" />
           </figure>
           <div className="coupon rise" style={{ ["--i" as string]: 1 }}>
             <div className="coupon-left">
               <h2 id="contact-title">Bring your fleet aboard</h2>
-              <p>Tell us about your fleet, your port or your agency, and we will walk you through the platform with your vessels in mind. Or write to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
+              <p>Tell us about your fleet, your port or your agency, and get a walkthrough of the platform built around your vessels. Or write to <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p>
             </div>
             <form onSubmit={submit}>
-              <label className="sr" htmlFor="f-name">Your name</label>
-              <input id="f-name" name="name" placeholder="Your name" required autoComplete="name" />
-              <label className="sr" htmlFor="f-company">Company</label>
-              <input id="f-company" name="company" placeholder="Company or agency" autoComplete="organization" />
-              <label className="sr" htmlFor="f-email">Email</label>
-              <input id="f-email" name="email" type="email" placeholder="Work email" required autoComplete="email" />
-              <label className="sr" htmlFor="f-fleet">Fleet size</label>
+              <label htmlFor="f-name">Name</label>
+              <input id="f-name" name="name" placeholder="e.g. Amara Okafor…" required autoComplete="name" />
+              <label htmlFor="f-company">Company or agency</label>
+              <input id="f-company" name="company" placeholder="e.g. Seaways Ltd…" autoComplete="organization" />
+              <label htmlFor="f-email">Work email</label>
+              <input id="f-email" name="email" type="email" inputMode="email" spellCheck={false} placeholder="e.g. ops@seaways.com…" required autoComplete="email" />
+              <label htmlFor="f-fleet">Fleet size</label>
               <select id="f-fleet" name="fleet" defaultValue="">
-                <option value="" disabled>How many vessels?</option>
-                <option>1 to 5</option><option>6 to 20</option><option>21 to 100</option><option>More than 100</option><option>Regulator or partner</option>
+                <option value="" disabled>Choose one…</option>
+                <option>1 to 5 vessels</option><option>6 to 20 vessels</option><option>21 to 100 vessels</option><option>More than 100 vessels</option><option>Regulator or partner</option>
               </select>
-              <button className="btn dark" type="submit">Request a walkthrough <span className="arrow" aria-hidden="true">→</span></button>
+              <button className="btn dark" type="submit">Request a Walkthrough <span className="arrow" aria-hidden="true">→</span></button>
             </form>
           </div>
         </section>
@@ -317,7 +318,7 @@ export default function Maritime() {
             <Logo link={false} size={44} />
             <p>Maritime carbon intelligence for fleets, ports and regulators.</p>
           </div>
-          <a className="btn notch rise" style={{ ["--i" as string]: 1 }} href="#contact">Book a walkthrough <span className="arrow" aria-hidden="true">→</span></a>
+          <a className="btn notch rise" style={{ ["--i" as string]: 1 }} href="#contact">Book a Walkthrough <span className="arrow" aria-hidden="true">→</span></a>
         </div>
         <nav className="foot-links rise" style={{ ["--i" as string]: 2 }} aria-label="Footer">
           <a href="#how">How it works</a><a href="#platform">Platform</a><a href="#ratings">Ratings</a><a href="#contact">Contact</a>
