@@ -184,7 +184,7 @@
 .verdict-letter { width: 88px; height: 88px; border-radius: 22px; flex: none; display: grid; place-items: center; font: 700 3.25rem/1 var(--display); color: #04130b; }
 .verdict h3 { font-size: clamp(1.5rem, 1.1rem + 1vw, 2rem); font-weight: 600; }
 .verdict p { margin-top: 8px; color: #d2e3da; }
-.checks { margin-top: 18px; color: #d2e3da; }
+.checks { margin-top: 22px; color: #d2e3da; }
 .checks b { color: #fff; }
 .ratings .pill { margin-top: 28px; }
 
@@ -216,7 +216,7 @@
 .foot-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; align-items: flex-start; }
 .foot-top p { margin-top: 14px; color: var(--muted); max-width: 32ch; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 6px 22px; max-width: 560px; }
-.foot-links a { text-decoration: none; font-weight: 500; padding: 6px 0; }
+.foot-links a { text-decoration: none; font-weight: 500; min-height: 44px; display: inline-flex; align-items: center; }
 .foot-links a:hover { color: var(--accent); }
 .legal { margin-top: 40px; font-size: .875rem; color: var(--muted); }
 
@@ -276,4 +276,11 @@
   .feature h3 { margin-top: 0; font-size: 1.125rem; }
   .feature p { font-size: .9375rem; }
   .foot-links { gap: 4px 18px; }
+}
+
+@media (max-width: 420px) {
+  .fact { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .fact-n { min-width: 0; }
+  .verdict { flex-direction: column; gap: 14px; }
+  .hero h1 { font-size: clamp(2.25rem, 11vw, 3rem); }
 }

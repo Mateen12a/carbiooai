@@ -113,8 +113,8 @@ function Hero() {
         </motion.div>
         <motion.div className={`hero-chip ${verified ? "ok" : ""}`} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0, transition: { delay: 0.6 } }} aria-live="polite">
           <span className="chip-dot" aria-hidden="true" />
-          <span className="chip-ship" translate="no">MT ECO HORIZON</span>
-          <span className="chip-state">{verified ? "Records verified · CII A" : "Scanning fuel records…"}</span>
+          <span className="chip-ship">Live CII status</span>
+          <span className="chip-state">{verified ? "Records verified · Grade A" : "Checking fuel records…"}</span>
         </motion.div>
         <div className="hero-hint" aria-hidden="true">Scroll to verify</div>
       </div>
@@ -199,9 +199,9 @@ function How() {
   return (
     <section id="how" ref={ref} className="how wrap" aria-labelledby="how-title">
       <motion.h2 id="how-title" className="h2" initial="hidden" whileInView="show" viewport={{ once: true }} variants={rise}>How it works</motion.h2>
-      <div className="tabs" role="tablist" aria-label="Steps">
+      <div className="tabs" role="tablist" aria-label="Steps" onKeyDown={(e) => { if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return; e.preventDefault(); const n = (i + (e.key === "ArrowRight" ? 1 : STAGES.length - 1)) % STAGES.length; pick(n); document.getElementById(`tab-${n}`)?.focus(); }}>
         {STAGES.map((s, n) => (
-          <button key={s.name} role="tab" type="button" id={`tab-${n}`} aria-selected={n === i} aria-controls="how-panel" className={`tab ${n === i ? "on" : ""}`} onClick={() => pick(n)}>
+          <button key={s.name} role="tab" type="button" id={`tab-${n}`} aria-selected={n === i} tabIndex={n === i ? 0 : -1} aria-controls="how-panel" className={`tab ${n === i ? "on" : ""}`} onClick={() => pick(n)}>
             {s.name}{n === i && auto && inView && !reduce && <span className="tab-timer" aria-hidden="true" />}
           </button>
         ))}
