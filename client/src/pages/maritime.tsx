@@ -39,7 +39,6 @@ const SCREENS = [
   { name: "Captain portal", src: "/media/ui/captain-rating.webp", w: 1560, h: 920, alt: "Captain portal showing the vessel's CII rating of A with buttons to submit a fuel delivery or a position report", fact: "Each captain sees their own vessel's rating and the next record to send." },
   { name: "Vessel intelligence", src: "/media/ui/vessel-performance.webp", w: 2170, h: 790, alt: "Monthly CO2 emissions chart for one vessel, 15% below its required carbon intensity line", fact: "Monthly CO₂ against the required line, with the projected year-end grade." },
   { name: "Confirm a voyage", src: "/media/ui/captain-voyage-m.webp", w: 1688, h: 1140, alt: "Confirm voyage arrival form with route, dates, distance and cargo", fact: "Arrival, distance, cargo and fuel in one form. The rating updates on confirm." },
-  { name: "Full captain view", src: "/media/ui/captain-home.webp", w: 1920, h: 1200, alt: "The full captain portal screen in Carbioo AI", fact: "Everything a vessel needs, on one screen, on any device." },
 ];
 const POINTS = [
   ["Works offline", "Records save at sea and sync when the signal returns."],
