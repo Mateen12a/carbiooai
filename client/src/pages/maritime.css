@@ -1,15 +1,16 @@
 /* Carbioo AI maritime landing. One motif: the IMO CII band, five steps A to E,
    cut into corners as a stepped notch. Brand palette and faces kept. */
 .cb {
-  --ground: #06131b;
-  --surface: #0c2230;
-  --ink: #eef5f0;
-  --muted: #a8bfb6;
+  --ground: #f4f6f1;
+  --surface: #e2eae3;
+  --ink: #0b1d26;
+  --muted: #4a625b;
   --accent: #22c46e;
   --accent-ink: #04130b;
-  --field: #eef3ec;
-  --field-ink: #0b1d26;
-  --field-muted: #3d5550;
+  --field: #0b1d26;
+  --field-ink: #eef5f0;
+  --field-muted: #a8bfb6;
+  --accent-text: #11743f;
   --a: #22c46e; --b: #8fe0b0; --c: #c9d6cf; --d: #f2b441; --e: #ef6a5b;
   --display: 'Oswald', 'Arial Narrow', sans-serif;
   --text: 'Inter', Arial, sans-serif;
@@ -68,7 +69,7 @@
 .btn:active { transform: translateY(0) scale(.98); }
 .btn .arrow { transition: transform .2s ease; }
 .btn:hover .arrow { transform: translateX(4px); }
-.cb .btn.dark { background: var(--field-ink); color: var(--field); }
+.cb .btn.dark { background: #0b1d26; color: #eef5f0; }
 .cb .btn.dark:hover { background: #17323f; }
 
 /* Nav */
@@ -76,7 +77,7 @@
   position: relative; z-index: 5; }
 .mark { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font: 600 1.5rem/1 var(--display); letter-spacing: .01em; }
 .mark .leaf { width: 38px; height: 38px; display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); }
-.mark em { font-style: normal; color: var(--accent); }
+.mark em { font-style: normal; color: var(--accent-text); }
 .mark sup { font: 500 var(--step-small)/1 var(--text); margin-left: 2px; vertical-align: super; color: var(--muted); }
 .nav ul { display: flex; gap: clamp(16px, 2.4vw, 36px); list-style: none; margin: 0; padding: 0; }
 .nav ul a { text-decoration: none; font-size: 1rem; color: var(--ink); position: relative; padding: 6px 0; }
@@ -95,7 +96,7 @@
 .stage { --notch: clamp(18px, 2.2vw, 30px); position: absolute; left: 42%; right: 0; top: 46%; bottom: 0; background: var(--accent);
   overflow: hidden; z-index: 1; }
 .stage-inner { position: absolute; left: clamp(28px, 4vw, 64px); top: clamp(40px, 6vw, 96px); width: min(640px, 82%); }
-.stage-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .16; mix-blend-mode: multiply; filter: grayscale(1); }
+.stage-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .2; mix-blend-mode: multiply; filter: grayscale(1); }
 
 /* Interface fragments keep the product's own borders (data-ui). */
 .ui { font-family: var(--text); background: #fbfcfb; color: #13232c; border: 1px solid #d5e0d8; font-size: 15px; line-height: 1.4; } /* taste-skill-ignore: data-ui fragment border or coupon notch mask */
@@ -131,7 +132,7 @@
 .how-control input[type=range] { position: relative; z-index: 1; width: 100%; appearance: none; height: 32px; background: transparent; cursor: pointer; margin: 0; }
 .how-control input[type=range]::-webkit-slider-runnable-track { height: 8px; background: transparent; }
 .how-control .rail { position: absolute; left: 0; right: 0; top: 12px; height: 8px; background: #8aa39b; pointer-events: none; }
-.how-control .rail i { position: absolute; inset: 0 auto 0 0; background: var(--field-ink); transition: width .2s ease; }
+.how-control .rail i { position: absolute; inset: 0 auto 0 0; background: var(--accent); transition: width .2s ease; }
 .how-control .slider { position: relative; }
 .how-control input[type=range]::-moz-range-track { height: 8px; background: transparent; }
 
@@ -139,10 +140,10 @@
 .how-control input[type=range]::-moz-range-thumb { width: 32px; height: 32px; background: var(--accent); border: 0; border-radius: 0; }
 .how-control input[type=range]:active::-webkit-slider-thumb { transform: scale(1.15); }
 .stops { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 12px; }
-.stops button { background: none; border: 0; padding: 4px 0; text-align: left; font: 500 1rem/1.2 var(--text); color: #4f6660; cursor: pointer; }
-.stops button:nth-child(n+3) { color: #9fb8ae; }
-.stops button.cur { color: var(--field-ink); font-weight: 700; }
-.stops button.cur.r { color: var(--ink); }
+.stops button { background: none; border: 0; padding: 4px 0; text-align: left; font: 500 1rem/1.2 var(--text); color: #a8bfb6; cursor: pointer; }
+.stops button:nth-child(n+3) { color: #4a625b; }
+.stops button.cur { color: #eef5f0; font-weight: 700; }
+.stops button.cur.r { color: #0b1d26; }
 .form-ui { padding: 22px 24px; display: grid; gap: 12px; }
 .form-ui label { display: grid; gap: 5px; font-size: 12.5px; color: #4f6660; }
 .form-ui .in { border: 1px solid #cfdbd3; padding: 11px 12px; font-weight: 600; color: #13232c; background: #fff; min-height: 44px; } /* taste-skill-ignore: data-ui fragment border or coupon notch mask */
@@ -188,12 +189,12 @@
 .points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; margin-top: 56px; }
 .points h3 { font: 600 var(--step-body)/1.3 var(--text); letter-spacing: 0; display: flex; gap: 10px; align-items: baseline; }
 .points p { margin-top: 8px; font-size: 1rem; line-height: 1.5; color: var(--field-muted); }
-.points > div:nth-child(3n+1) .step-mark { background: #17a35a; }
-.points > div:nth-child(3n+2) .step-mark { background: #d39418; }
-.points > div:nth-child(3n) .step-mark { background: #0b1d26; }
+.points > div:nth-child(3n+1) .step-mark { background: #22c46e; }
+.points > div:nth-child(3n+2) .step-mark { background: #f2b441; }
+.points > div:nth-child(3n) .step-mark { background: #eef5f0; }
 
-/* Pricing: size bands are the heading; one live figure answers the band and the grade. */
-.pricing { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(32px, 5vw, 80px); padding: clamp(120px, 14vw, 200px) var(--margin) 0; min-height: 90svh; }
+/* Ratings: size bands are the heading; the explanation answers the band and the grade. */
+.ratings { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(32px, 5vw, 80px); padding: clamp(120px, 14vw, 200px) var(--margin) 0; min-height: 90svh; align-items: center; }
 .bands { list-style: none; margin: 0; padding: 0; }
 .bands button { display: flex; align-items: center; gap: .35em; background: none; border: 0; cursor: pointer; padding: 2px 0; text-align: left;
   font: 600 clamp(2rem, 1rem + 3.4vw, 4.5rem)/1.12 var(--display); letter-spacing: -0.02em; color: var(--muted); transition: color .2s ease, transform .2s ease; }
@@ -201,18 +202,18 @@
 .bands button[aria-pressed=true] { color: var(--ink); }
 .bands button .step-mark { background: var(--accent); width: .34em; height: .34em; opacity: 0; transition: opacity .2s ease; }
 .bands button[aria-pressed=true] .step-mark { opacity: 1; }
-.fee { align-self: center; }
-.fee .figure { font: 600 clamp(3.5rem, 1.5rem + 7vw, 8.5rem)/.9 var(--display); letter-spacing: -0.035em; font-variant-numeric: tabular-nums; }
-.fee .period { margin-top: 10px; color: var(--muted); }
-.grades { display: flex; gap: 6px; margin-top: 30px; flex-wrap: wrap; }
-.grades button { --notch: 4px; width: 64px; height: 56px; border: 0; cursor: pointer; font: 600 1.4rem/1 var(--display); color: #04130b; opacity: .45;
+.explain .rules { font-size: var(--step-lead); line-height: 1.4; max-width: 34ch; }
+.grades { display: flex; gap: 6px; margin-top: 34px; flex-wrap: wrap; }
+.grades button { --notch: 4px; width: 64px; height: 56px; border: 0; cursor: pointer; font: 600 1.4rem/1 var(--display); color: #04130b; opacity: .62;
   transition: opacity .2s ease, transform .2s ease; }
-.grades button:hover { opacity: .8; transform: translateY(-3px); }
+.grades button:hover { opacity: .85; transform: translateY(-3px); }
 .grades button[aria-pressed=true] { opacity: 1; transform: translateY(-6px); }
-.grade-note { margin-top: 18px; font-weight: 600; min-height: 1.6em; }
-.fee .includes { margin-top: 22px; max-width: 46ch; color: var(--ink); }
-.fee .fine { margin-top: 14px; font-size: var(--step-small); color: var(--muted); }
-.fee .btn { margin-top: 30px; }
+.verdict { display: flex; gap: 24px; align-items: flex-start; margin-top: 30px; min-height: 9.5em; }
+.verdict .letter { --notch: 8px; flex: none; width: 112px; height: 112px; display: grid; place-items: center; font: 600 4.5rem/1 var(--display); color: #04130b; }
+.verdict h3 { font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem); }
+.verdict p { margin-top: 10px; max-width: 38ch; }
+.explain .checks { margin-top: 18px; max-width: 46ch; }
+.explain .btn { margin-top: 30px; }
 
 /* Contact: the harbour, then a coupon to tear off. */
 .harbour { --notch: clamp(18px, 2vw, 28px); margin: 0 auto 72px; max-width: 1220px; position: relative; height: clamp(260px, 34vw, 480px); overflow: hidden; }
@@ -244,7 +245,7 @@
 .foot-grid .lab { color: var(--muted); }
 .legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: 48px; font-size: var(--step-small); color: var(--muted); }
 .legal a { color: var(--ink); }
-.credits { margin-top: 18px; font-size: var(--step-small); color: var(--muted); max-width: 120ch; }
+.credits { margin-top: 18px; font-size: var(--step-small); color: var(--muted); max-width: 72ch; }
 .credits a { color: var(--ink); }
 
 /* Entrances: parts rise in sequence once their section arrives. */
@@ -308,9 +309,9 @@
   .features { grid-template-columns: 1fr; padding-left: var(--margin); }
   .features figure { height: 60svh; margin-left: calc(var(--margin) * -1 - 10%); width: 92vw; }
   .points { grid-template-columns: 1fr; gap: 28px; }
-  .pricing { grid-template-columns: 1fr; min-height: auto; }
+  .ratings { grid-template-columns: 1fr; min-height: auto; }
   .bands button { font-size: 9vw; }
-  .fee .figure { font-size: 17vw; }
+  .verdict .letter { width: 84px; height: 84px; font-size: 3.4rem; }
   .coupon { grid-template-columns: 1fr;
     -webkit-mask: radial-gradient(circle 16px at 0 40%, #0000 98%, #000) left/51% 100% no-repeat, radial-gradient(circle 16px at 100% 40%, #0000 98%, #000) right/51% 100% no-repeat; /* taste-skill-ignore: data-ui fragment border or coupon notch mask */
     mask: radial-gradient(circle 16px at 0 40%, #0000 98%, #000) left/51% 100% no-repeat, radial-gradient(circle 16px at 100% 40%, #0000 98%, #000) right/51% 100% no-repeat; } /* taste-skill-ignore: data-ui fragment border or coupon notch mask */

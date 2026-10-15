@@ -5,20 +5,27 @@ const EMAIL = "hello@carbiooai.com";
 const GRADES = ["A", "B", "C", "D", "E"] as const;
 type Grade = (typeof GRADES)[number];
 const GRADE_COLOUR: Record<Grade, string> = { A: "var(--a)", B: "var(--b)", C: "var(--c)", D: "var(--d)", E: "var(--e)" };
-const GRADE_NOTE: Record<Grade, string> = {
-  A: "Rated A: 30% off the standard price",
-  B: "Rated B: 15% off the standard price",
-  C: "Rated C: the standard price",
-  D: "Rated D: 30% more, for the extra evidence review",
-  E: "Rated E: 60% more, until the vessel improves",
+// What each grade means: IMO CII for ships of 5,000 GT and above, progress levels below that.
+const CII_MEANING: Record<Grade, [string, string]> = {
+  A: ["Major superior", "Well below the required line. Carbioo AI keeps the evidence that holds the rating."],
+  B: ["Minor superior", "Below the required line. Monthly tracking shows how much margin is left."],
+  C: ["Moderate", "On the required line. The projection is watched month by month so it does not slip."],
+  D: ["Minor inferior", "Three years at D means a corrective action plan. Carbioo AI flags it early and tracks the plan."],
+  E: ["Inferior", "One year at E means a corrective action plan. The operator is alerted and the plan is built on evidence."],
+};
+const LEVEL_MEANING: Record<Grade, [string, string]> = {
+  A: ["Sustained", "Complete records and verified efficiency gains, held over time."],
+  B: ["Improving", "Complete records and verified efficiency gains."],
+  C: ["Registered", "Complete records, submitted on time."],
+  D: ["Partial reporting", "Gaps in records or evidence. Carbioo AI shows exactly what is missing."],
+  E: ["Not reporting", "Little or no usable records yet. The baseline starts here."],
 };
 
-// Nigerian-flagged vessels, naira per month (planning prices, before VAT).
 const BANDS = [
-  { name: "Below 400 GT", short: "domestic craft", fees: [23600, 28700, 33800, 43900, 54000], rules: "Ferries, barges, tugs and workboats on practical progress levels." },
-  { name: "400 to 5,000 GT", short: "coastal vessels", fees: [89800, 109000, 128300, 166700, 205200], rules: "Coastal and regional vessels, with EEXI and SEEMP records kept." },
-  { name: "5,000 to 20,000 GT", short: "large commercial ships", fees: [141800, 172100, 202500, 263300, 324000], rules: "Ships rated A to E every year under IMO CII, with EEXI and SEEMP." },
-  { name: "20,000 GT and above", short: "very large ships", fees: [236200, 286900, 337500, 438800, 540000], rules: "The largest ships, with monthly analyst review of every anomaly." },
+  { name: "Below 400 GT", cii: false, rules: "Domestic craft below the IMO limits. No annual CII rating, so Carbioo AI measures practical efficiency instead: fuel per passenger-km for ferries, per tonne-km for barges, per engine-hour for tugs.", checks: "Fuel reconciled every month, bunker notes matched where available, AIS spot checks." },
+  { name: "400 to 5,000 GT", cii: false, rules: "Coastal and regional vessels. EEXI and SEEMP Part I apply from 400 GT, but there is no annual CII rating, so progress levels show where each vessel stands.", checks: "Fuel reconciled every month, every bunker delivery matched, engine and fuel particulars verified for EEXI." },
+  { name: "5,000 to 20,000 GT", cii: true, rules: "Rated A to E every year under the IMO carbon intensity indicator, with EEXI and SEEMP. The required cut reaches 21.5% below 2019 levels by 2030.", checks: "Every voyage cross-checked with AIS, every delivery matched, CII checked against IMO fuel data each year." },
+  { name: "20,000 GT and above", cii: true, rules: "The largest ships, rated A to E every year under IMO CII, with EEXI and SEEMP and the same tightening line to 2030.", checks: "Every voyage cross-checked with AIS, CII checked against IMO fuel data, anomalies reviewed by an analyst every month." },
 ];
 
 const STAGES = [
@@ -47,7 +54,6 @@ const POINTS = [
   ["Role based access", "Operators see their own vessels, regulators see the fleet."],
 ];
 
-const naira = (n: number) => "₦" + n.toLocaleString("en-NG");
 const mailto = (subject: string, body: string) => `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 function useReveal(root: React.RefObject<HTMLElement | null>) {
@@ -168,8 +174,7 @@ export default function Maritime() {
   }, []);
 
   const b = BANDS[band];
-  const gi = GRADES.indexOf(grade);
-  const fee = b.fees[gi];
+  const meaning = (b.cii ? CII_MEANING : LEVEL_MEANING)[grade];
   const fadingStage = stage !== stageShown;
   const fadingScreen = screen !== screenShown;
 
@@ -188,7 +193,7 @@ export default function Maritime() {
           <ul>
             <li><a href="#how">How it works</a></li>
             <li><a href="#platform">Platform</a></li>
-            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#ratings">Ratings</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -275,24 +280,29 @@ export default function Maritime() {
           </div>
         </section>
 
-        <section id="pricing" className="pricing" aria-label="Pricing" data-reveal>
+        <section id="ratings" className="ratings" aria-label="What the ratings mean for your vessels" data-reveal>
           <ul className="bands rise">
             {BANDS.map((x, i) => (
               <li key={x.name}><button type="button" aria-pressed={i === band} onClick={() => setBand(i)} onFocus={() => setBand(i)}>
                 <span className="step-mark" aria-hidden="true" />{x.name}</button></li>
             ))}
           </ul>
-          <div className="fee rise" style={{ ["--i" as string]: 1 }} aria-live="polite">
-            <div className="figure">{naira(fee)}</div><p className="period">per month, per vessel</p>
-            <div className="grades" role="group" aria-label="Choose the vessel's rating">
+          <div className="explain rise" style={{ ["--i" as string]: 1 }} aria-live="polite">
+            <p className="rules">{b.rules}</p>
+            <div className="grades" role="group" aria-label={b.cii ? "Choose a CII rating" : "Choose a progress level"}>
               {GRADES.map((g) => (
-                <button key={g} type="button" className="notch" aria-pressed={g === grade} onClick={() => setGrade(g)} style={{ background: GRADE_COLOUR[g] }} aria-label={`Rating ${g}`}>{g}</button>
+                <button key={g} type="button" className="notch" aria-pressed={g === grade} onClick={() => setGrade(g)} style={{ background: GRADE_COLOUR[g] }} aria-label={`${b.cii ? "Rating" : "Level"} ${g}`}>{g}</button>
               ))}
             </div>
-            <p className="grade-note">{GRADE_NOTE[grade]}</p>
-            <p className="includes">One subscription per vessel, set by size and reviewed every quarter. {b.rules} The fee covers year round access, offline capture, monthly summaries, early warnings, evidence exports, support and every IMO update to 2030.</p>
-            <p className="fine">Nigerian-flagged vessels, before VAT. Foreign-flagged vessels are invoiced in US dollars at 1.25 times. Planning prices, confirmed during onboarding.</p>
-            <a className="btn notch" href={mailto(`Pricing for ${b.short}`, `We operate ${b.short} (${b.name}) and would like to discuss Carbioo AI.`)}>Ask about {b.short} <span className="arrow" aria-hidden="true">→</span></a>
+            <div className="verdict">
+              <span className="letter notch" style={{ background: GRADE_COLOUR[grade] }} aria-hidden="true">{grade}</span>
+              <div>
+                <h3>{meaning[0]}</h3>
+                <p>{meaning[1]}</p>
+              </div>
+            </div>
+            <p className="checks"><b>How we verify it:</b> {b.checks}</p>
+            <a className="btn notch" href={mailto(`Carbioo AI for ${b.name} vessels`, `We operate vessels in the ${b.name} range and would like a walkthrough of Carbioo AI.`)}>Talk to us about your fleet <span className="arrow" aria-hidden="true">→</span></a>
           </div>
         </section>
 
@@ -331,7 +341,7 @@ export default function Maritime() {
           ))}
         </div>
         <div className="foot-grid">
-          <div><span className="lab">Product</span><a href="#how">How it works</a><a href="#platform">Platform</a><a href="#pricing">Pricing</a></div>
+          <div><span className="lab">Product</span><a href="#how">How it works</a><a href="#platform">Platform</a><a href="#ratings">Ratings</a></div>
           <div><span className="lab">Company</span><a href="#contact">Contact</a><a href="https://www.linkedin.com/company/carbiooai/" rel="noopener">LinkedIn</a></div>
           <div><Mark link={false} /><p style={{ marginTop: 10 }}>Maritime carbon intelligence. Built for Nigeria, designed for global operations.</p><a href={`mailto:${EMAIL}`}>{EMAIL}</a></div>
         </div>

@@ -10,7 +10,7 @@ function Router() {
       <Route path="/" component={Maritime} />
       <Route path="/about"><Redirect to="/" /></Route>
       <Route path="/investor"><Redirect to="/" /></Route>
-      <Route path="/pricing"><Redirect to="/#pricing" /></Route>
+      <Route path="/pricing"><Redirect to="/#ratings" /></Route>
       <Route path="/contact"><Redirect to="/#contact" /></Route>
       <Route path="/case-studies"><Redirect to="/" /></Route>
       <Route path="/api"><Redirect to="/" /></Route>
