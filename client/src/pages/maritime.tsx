@@ -53,6 +53,11 @@ const POINTS = [
 ];
 const STATEMENT = "Carbon rules tighten every year to 2030. Most fleets still prove compliance on paper. Carbioo AI turns fuel logs, bunker notes and voyage records into a verified rating for every ship, and warns you before it fails.";
 
+// The web app: sign-up opens straight on the free-vessel form
+const APP_URL = "https://app.carbiooai.com";
+const SIGNUP_URL = `${APP_URL}/auth?signup=1`;
+const SIGNIN_URL = `${APP_URL}/auth`;
+
 const mailto = (subject: string, body: string) => `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 const rise = { hidden: { opacity: 0, y: 18 }, show: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.07, ease: [0.22, 0.61, 0.36, 1] } }) };
 
@@ -69,20 +74,20 @@ function Nav() {
     return () => window.removeEventListener("scroll", on);
   }, []);
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [open]);
-  const links = [["#how", "How It Works"], ["#platform", "Platform"], ["#ratings", "Ratings"], ["#contact", "Contact"]];
+  const links = [["#how", "How It Works"], ["#platform", "Platform"], ["#ratings", "Ratings"], ["#contact", "Contact"], [SIGNIN_URL, "Sign In"]];
   return (
     <header className={`nav ${dark ? "on-dark" : "on-light"} ${open ? "open" : ""}`}>
       <div className="nav-bar">
         <a href="#top" className="nav-logo" aria-label="Carbioo AI, back to top"><Logo light={dark && !open} /></a>
         <nav aria-label="Main" className="nav-links">{links.map(([h, l]) => <a key={h} href={h}>{l}</a>)}</nav>
-        <a className="pill pill-accent nav-cta" href="#contact">Book a Walkthrough</a>
+        <a className="pill pill-accent nav-cta" href={SIGNUP_URL}>Start Free</a>
         <button className="nav-menu" type="button" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)}>
           <span /><span />
         </button>
       </div>
       <div id="mobile-menu" className="nav-sheet" hidden={!open}>
         {links.map(([h, l]) => <a key={h} href={h} onClick={() => setOpen(false)}>{l}</a>)}
-        <a className="pill pill-accent" href="#contact" onClick={() => setOpen(false)}>Book a Walkthrough</a>
+        <a className="pill pill-accent" href={SIGNUP_URL} onClick={() => setOpen(false)}>Start Free: First Vessel Free</a>
       </div>
     </header>
   );
@@ -106,8 +111,8 @@ function Hero() {
           <motion.h1 id="hero-title" initial="hidden" animate="show" variants={rise}>Every ship, rated and verified.</motion.h1>
           <motion.p className="hero-lead" initial="hidden" animate="show" custom={1} variants={rise}>Verified IMO carbon ratings from the records your fleet already keeps. Built for captains, operators and regulators.</motion.p>
           <motion.div className="hero-actions" initial="hidden" animate="show" custom={2} variants={rise}>
-            <a className="pill pill-accent" href="#contact">Book a Walkthrough <span aria-hidden="true">→</span></a>
-            <a className="pill pill-ghost" href="#how">See How It Works</a>
+            <a className="pill pill-accent" href={SIGNUP_URL}>Start Free: First Vessel Free <span aria-hidden="true">→</span></a>
+            <a className="pill pill-ghost" href="#contact">Book a Walkthrough</a>
           </motion.div>
         </motion.div>
         <motion.div className={`hero-chip ${verified ? "ok" : ""}`} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0, transition: { delay: 0.6 } }} aria-live="polite">
@@ -274,7 +279,7 @@ function Ratings() {
             <div><h3>{meaning[0]}</h3><p>{meaning[1]}</p></div>
           </motion.div>
           <p className="checks"><b>How it is verified:</b> {b.checks}</p>
-          <a className="pill pill-light" href={mailto(`Carbioo AI for ${b.name} vessels`, `We operate vessels in the ${b.name} range and would like a walkthrough of Carbioo AI.`)}>Talk to Us About Your Fleet <span aria-hidden="true">→</span></a>
+          <a className="pill pill-light" href={SIGNUP_URL}>Get This Rating for Your Ship <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
